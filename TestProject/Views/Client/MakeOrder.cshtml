@@ -1,0 +1,36 @@
+﻿@model TestProject.Models.OrderViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel panel-success">
+    <div class="panel-body">
+        <form class="p-a-1" asp-action="MakeOrder" method="post">
+            <div class="form-group">
+                @Html.LabelFor(m => m.MusicInstrumentName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.MusicInstrumentName, new SelectList(Model.MusicInstrumentViewModel, "Name", "Name"), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.MusicDescription, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.MusicDescription, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Price, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="Make Order" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

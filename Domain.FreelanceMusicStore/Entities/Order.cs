@@ -12,6 +12,7 @@ namespace Domain.FreelanceMusicStore.Entities
         [ForeignKey("Musician")]
         public int? MusicianId;
         public string MusicDescription;
+        public decimal? Price { get; set; }
 
         public virtual MusicInstrument MusicInstrument { get; set; }
         public virtual Client Client { get; set; }
