@@ -17,8 +17,6 @@ namespace DAL.FreelanceMusicStore.Interfaces
         IRepository<Order> Orders { get; }
         ApplicationUserManager ApplicationUserManager { get; }
         ApplicationRoleManager ApplicationRoleManager { get; }
-        UserRepository UserRepository { get; }
-        RoleRepository RoleRepository { get; }
-        void SaveAsync();
+        Task SaveAsync();
     }
 }

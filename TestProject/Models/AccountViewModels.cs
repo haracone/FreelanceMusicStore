@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using BLL.FreelanceMusicStore.Interfaces;
 using DAL.FreelanceMusicStore.Identity;
 using DAL.FreelanceMusicStore.Interfaces;
 
@@ -66,12 +68,17 @@ namespace TestProject.Models
 
     public class RegisterViewModel
     {
-        IUnitOfWork _unitOfWork;
-        public RegisterViewModel(IUnitOfWork unitOfWork)
+        IRoleService _roleService;
+        public RegisterViewModel(IRoleService roleService)
         {
-            _unitOfWork = unitOfWork;
-            Roles = _unitOfWork.RoleRepository.GetAll();
+            _roleService = roleService;
+            Roles = _roleService.GetAllRoles();
         }
+
+        public RegisterViewModel()
+        {
+        }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -87,8 +94,9 @@ namespace TestProject.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [Required]
         [Display(Name = "Role")]
-        public CustomRole SelectedRole { get; set; }
+        public string SelectedRole { get; set; }
         public IEnumerable<CustomRole> Roles { get; set; }
     }
 

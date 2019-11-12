@@ -1,21 +1,10 @@
-using System;
-using DAL.FreelanceMusicStore;
-using DAL.FreelanceMusicStore.Interfaces;
-using Unity.AspNet;
-using Unity;
-using System.Web.Mvc;
-using Unity.Lifetime;
-using Domain.FreelanceMusicStore.Entities;
-using DAL.FreelanceMusicStore.Repositories;
-using Microsoft.AspNet.Identity;
-using DAL.FreelanceMusicStore.Identity;
-using Domain.FreelanceMusicStore.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
-using Unity.Injection;
 using BLL.FreelanceMusicStore.Interfaces;
 using BLL.FreelanceMusicStore.Services;
+using DAL.FreelanceMusicStore;
+using DAL.FreelanceMusicStore.Interfaces;
+using System;
+using System.Web.Mvc;
+using Unity;
 
 namespace TestProject
 {
@@ -51,21 +40,9 @@ namespace TestProject
         /// </remarks>
         public static void RegisterTypes(IUnityContainer container)
         {
-/*            container.RegisterType<EF6DBContext>(new PerThreadLifetimeManager());
-            container.RegisterType<IRepository<Client>, ClientRepository>();
-            container.RegisterType<IRepository<Musician>, MusicianRepository>();
-            container.RegisterType<IRepository<MusicInstrument>, MusicInstrumentRepository>();
-            container.RegisterType<IRepository<Order>, OrderRepository>();*/
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<IApplicationUserService, ApplicationUserService>();
-/*            container.RegisterType<CustomUserClaim>();
-            container.RegisterType<CustomUserLogin>();
-            container.RegisterType<CustomUserRole>();*/
-/*            container.RegisterType<IdentityUser<Guid, CustomUserLogin, CustomUserRole, CustomUserClaim>>();
-            container.RegisterType<ApplicationUser>();*/
-/*            container.RegisterType<IUserStore<ApplicationUser, Guid>, UserStore<ApplicationUser, CustomRole, Guid, CustomUserLogin, CustomUserRole, CustomUserClaim>>();
-            container.RegisterType<ApplicationUserManager>();*/
-
+            container.RegisterType<IRoleService, RoleService>();
             DependencyResolver.SetResolver(new Unity.AspNet.Mvc.UnityDependencyResolver(container));
             // NOTE: To load from web.config uncomment the line below.
             // Make sure to add a Unity.Configuration to the using statements.

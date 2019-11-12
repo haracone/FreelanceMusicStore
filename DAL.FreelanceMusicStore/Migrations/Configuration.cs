@@ -1,4 +1,5 @@
 ﻿using DAL.FreelanceMusicStore.Identity;
+using DAL.FreelanceMusicStore;
 
 namespace DAL.FreelanceMusicStore1.Migrations
 {
@@ -17,10 +18,9 @@ namespace DAL.FreelanceMusicStore1.Migrations
         protected override void Seed(DAL.FreelanceMusicStore.EF6DBContext context)
         {
             ApplicationRoleManager roleManager = new ApplicationRoleManager(new CustomRoleStore(context));
-            RoleRepository roleRepository = new RoleRepository(roleManager);
-            roleRepository.Create(new CustomRole() { Name = "Admin"});
-            roleRepository.Create(new CustomRole() { Name = "Client" });
-            roleRepository.Create(new CustomRole() { Name = "Musician" });
+            roleManager.CreateAsync(new CustomRole() { Name = "Admin"});
+            roleManager.CreateAsync(new CustomRole() { Name = "Client" });
+            roleManager.CreateAsync(new CustomRole() { Name = "Musician" });
             context.SaveChanges();
         }
     }

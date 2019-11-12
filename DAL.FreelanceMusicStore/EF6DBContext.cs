@@ -14,7 +14,7 @@ namespace DAL.FreelanceMusicStore
         public DbSet<MusicInstrument> MusicInstruments { get; set; }
         public DbSet<Order> Orders { get; set; }
 
-        public EF6DBContext() : base("DefaultConnection")
+        public EF6DBContext(string connection) : base(connection)
         {
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;

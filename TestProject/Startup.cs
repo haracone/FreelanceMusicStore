@@ -15,8 +15,6 @@ namespace TestProject
 
         public void Configuration(IAppBuilder app)
         {
-/*            app.CreatePerOwinContext(EF6DBContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);*/
             ConfigureAuth(app);
         }
     }

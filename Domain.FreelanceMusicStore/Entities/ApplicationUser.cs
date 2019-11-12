@@ -8,6 +8,7 @@ namespace Domain.FreelanceMusicStore.Entities
     {
         public ApplicationUser()
         {
+            Id = Guid.NewGuid();
         }
 
         public string Name { get; set; }

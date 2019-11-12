@@ -105,12 +105,14 @@
     <Compile Include="Interfaces\IApplicationUserService.cs" />
     <Compile Include="Interfaces\IConvertEntityToDTO.cs" />
     <Compile Include="Interfaces\IOrderService.cs" />
+    <Compile Include="Interfaces\IRoleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApplicationUserService.cs" />
     <Compile Include="Services\ClientService.cs" />
     <Compile Include="Services\MusicianDTOService.cs" />
     <Compile Include="Services\MusicInstrumentService.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\RoleService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -6,6 +6,5 @@ namespace DAL.FreelanceMusicStore.Identity
 {
     public class CustomRole : IdentityRole<Guid, CustomUserRole>
     {
-
     }
 }
