@@ -211,29 +211,9 @@
     <Compile Include="Identity\CustomUserStore.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Migrations\201911110451332_Init1.cs" />
-    <Compile Include="Migrations\201911110451332_Init1.designer.cs">
-      <DependentUpon>201911110451332_Init1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911111203101_Init2.cs" />
-    <Compile Include="Migrations\201911111203101_Init2.designer.cs">
-      <DependentUpon>201911111203101_Init2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911111207313_Init3.cs" />
-    <Compile Include="Migrations\201911111207313_Init3.designer.cs">
-      <DependentUpon>201911111207313_Init3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911111215223_Init4.cs" />
-    <Compile Include="Migrations\201911111215223_Init4.designer.cs">
-      <DependentUpon>201911111215223_Init4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911130531152_PriceAdd.cs" />
-    <Compile Include="Migrations\201911130531152_PriceAdd.designer.cs">
-      <DependentUpon>201911130531152_PriceAdd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911130606408_DescriptionAdd.cs" />
-    <Compile Include="Migrations\201911130606408_DescriptionAdd.designer.cs">
-      <DependentUpon>201911130606408_DescriptionAdd.cs</DependentUpon>
+    <Compile Include="Migrations\201911131124217_Init1.cs" />
+    <Compile Include="Migrations\201911131124217_Init1.designer.cs">
+      <DependentUpon>201911131124217_Init1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -254,23 +234,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911110451332_Init1.resx">
-      <DependentUpon>201911110451332_Init1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911111203101_Init2.resx">
-      <DependentUpon>201911111203101_Init2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911111207313_Init3.resx">
-      <DependentUpon>201911111207313_Init3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911111215223_Init4.resx">
-      <DependentUpon>201911111215223_Init4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911130531152_PriceAdd.resx">
-      <DependentUpon>201911130531152_PriceAdd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911130606408_DescriptionAdd.resx">
-      <DependentUpon>201911130606408_DescriptionAdd.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911131124217_Init1.resx">
+      <DependentUpon>201911131124217_Init1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,6 +2,7 @@
 using System.Linq;
 using System;
 using DAL.FreelanceMusicStore.Interfaces;
+using System.Collections.Generic;
 
 namespace DAL.FreelanceMusicStore.Repositories
 {
@@ -23,7 +24,7 @@ namespace DAL.FreelanceMusicStore.Repositories
             _context.Musicians.Remove(_context.Musicians.Find(Id));
         }
 
-        public IQueryable<Musician> GetAll()
+        public IEnumerable<Musician> GetAll()
         {
             return _context.Musicians;
         }

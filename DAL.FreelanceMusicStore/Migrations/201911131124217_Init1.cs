@@ -83,6 +83,8 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        MusicDescription = c.String(),
+                        Price = c.Decimal(precision: 18, scale: 2),
                         Client_Id = c.Int(),
                         Musician_Id = c.Int(),
                         MusicInstrument_Id = c.Int(),

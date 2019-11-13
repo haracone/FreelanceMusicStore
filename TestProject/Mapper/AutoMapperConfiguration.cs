@@ -13,5 +13,10 @@ namespace TestProject.Mapper
         });
 
         public static IMapper mapper = config.CreateMapper();
+        
+        public AutoMapperConfiguration()
+        {
+            config.AssertConfigurationIsValid();
+        }
     }
 }

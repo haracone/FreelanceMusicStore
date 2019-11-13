@@ -8,7 +8,7 @@ namespace DAL.FreelanceMusicStore.Interfaces
     public interface IRepository<T>
     {
         void Create(T Entity);
-        IQueryable<T> GetAll();
+        IEnumerable<T> GetAll();
         T GetById(int Id);
         void Delete(int Id);
         void Update(T Entity);

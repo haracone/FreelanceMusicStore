@@ -30,7 +30,9 @@ namespace TestProject.Controllers
         [Authorize(Roles = "Client")]
         public ActionResult MakeOrder(OrderViewModel order)
         {
-            _orderService.CreateOrder(_mapper.Map<OrderViewModel, OrderDTO>(order));           
+            OrderDTO orderDTO = _mapper.Map<OrderViewModel, OrderDTO>(order);
+            orderDTO.MusicInstrument = _InstrumentService.GetById(order.MusicInstrumentId);
+            _orderService.CreateOrder(orderDTO);
             return RedirectToAction("Index", "Home");
         }
     }

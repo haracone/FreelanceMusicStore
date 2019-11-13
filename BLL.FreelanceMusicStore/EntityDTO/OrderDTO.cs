@@ -13,8 +13,8 @@ namespace BLL.FreelanceMusicStore.EntityDTO
         public int? MusicianId;
         public string MusicDescription;
         public decimal? Price { get; set; }
-        public virtual MusicInstrumentDTO MusicInstrumentDTO { get; set; }
-        public virtual ClientDTO ClientDTO { get; set; }
-        public virtual MusicianDTO MusicianDTO { get; set; }
+        public virtual MusicInstrumentDTO MusicInstrument{ get; set; }
+        public ClientDTO Client{ get; set; }
+        public MusicianDTO Musician { get; set; }
     }
 }

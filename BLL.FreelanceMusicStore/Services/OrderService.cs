@@ -32,7 +32,7 @@ namespace BLL.FreelanceMusicStore.Services
 
         public void CreateOrder(OrderDTO orderDTO)
         {
-            Order order =_mapper.Map<OrderDTO, Order>(orderDTO);
+            Order order = _mapper.Map<OrderDTO, Order>(orderDTO);
             _unitOfWork.Orders.Create(order);
             _unitOfWork.SaveAsync();
         }

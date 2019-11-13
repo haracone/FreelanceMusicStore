@@ -11,5 +11,6 @@ namespace BLL.FreelanceMusicStore.Interfaces
     public interface IMusicInstrumentService
     {
         ICollection<MusicInstrumentDTO> GetAll();
+        MusicInstrumentDTO GetById(int Id);
     }
 }

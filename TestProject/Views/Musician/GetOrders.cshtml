@@ -15,6 +15,7 @@
     @foreach (var order in Model)
     {
         <tr>
+            <td>@order.MusicInstrument.Name</td>
             <td>@order.MusicDescription</td>
             <td>@order.Price</td>
         </tr>

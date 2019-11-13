@@ -15,12 +15,9 @@ using System.Threading.Tasks;
 namespace TestProject.Controllers
 {
     public class HomeController : Controller
-    {
-        private IUnitOfWork _unitOfWork;
-
+    { 
         public HomeController(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork;
         }
         public ActionResult Index()
         {

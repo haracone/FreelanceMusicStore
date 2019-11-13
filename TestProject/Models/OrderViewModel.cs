@@ -39,8 +39,9 @@ namespace TestProject.Models
         [Required]
         [Display(Name = "Music Instrument")]
         public virtual int MusicInstrumentId { get; set; }
+        public virtual MusicInstrumentViewModel MusicInstrument{ get; set; }
         public virtual IEnumerable<MusicInstrumentViewModel> MusicInstrumentViewModel { get; set; }
-        public virtual ClientViewModel ClientViewModel { get; set; }
-        public virtual MusicianViewModel MusicianViewModel { get; set; }
+        public virtual ClientViewModel Client{ get; set; }
+        public virtual MusicianViewModel Musician{ get; set; }
     }
 }

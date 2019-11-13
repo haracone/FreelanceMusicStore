@@ -22,6 +22,8 @@ namespace DAL.FreelanceMusicStore
             _context = new EF6DBContext("DefaultConnection");
             _applicationUserManager = new ApplicationUserManager(new CustomUserStore(_context));
             _applicationRoleManager = new ApplicationRoleManager(new CustomRoleStore(_context));
+            _clientRepository = new ClientRepository(_context);
+            _musicianRepository = new MusicianRepository(_context);
             _musicInstrumentRepository = new MusicInstrumentRepository(_context);
             _orderRepository = new OrderRepository(_context);
         }

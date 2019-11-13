@@ -28,5 +28,10 @@ namespace BLL.FreelanceMusicStore.Services
             }
             return entity;
         }
+
+        public MusicInstrumentDTO GetById(int Id)
+        {
+            return _mapper.Map<MusicInstrument, MusicInstrumentDTO>(_unitOfWork.MusicInstruments.GetById(Id));
+        }
     }
 }
