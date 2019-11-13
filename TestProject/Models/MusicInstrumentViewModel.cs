@@ -11,16 +11,5 @@ namespace TestProject.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
-        public MusicInstrumentViewModel ConvertDTOTOViewModel(MusicInstrumentDTO instrument)
-        {
-            var config = new MapperConfiguration(cfg => { cfg.CreateMap<MusicInstrumentDTO, MusicInstrumentViewModel>(); });
-
-            IMapper iMapper = config.CreateMapper();
-            var source = instrument;
-            var viewModel = iMapper.Map<MusicInstrumentDTO, MusicInstrumentViewModel>(source);
-
-            return viewModel;
-        }
     }
 }

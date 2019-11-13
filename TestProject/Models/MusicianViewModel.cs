@@ -14,16 +14,5 @@ namespace TestProject.Models
         public virtual ApplicationUserViewModel ApplicationUserViewModel { get; set; }
         public virtual ICollection<MusicInstrumentViewModel> MusicInstrumentViewModel { get; set; }
         public virtual ICollection<OrderViewModel> OrdersViewModel { get; set; }
-
-        public MusicianViewModel ConvertDTOTOViewModel(MusicianDTO instrument)
-        {
-            var config = new MapperConfiguration(cfg => { cfg.CreateMap<MusicianDTO, MusicianViewModel>(); });
-
-            IMapper iMapper = config.CreateMapper();
-            var source = instrument;
-            var viewModel = iMapper.Map<MusicianDTO, MusicianViewModel>(source);
-
-            return viewModel;
-        }
     }
 }

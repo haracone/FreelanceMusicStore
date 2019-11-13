@@ -20,15 +20,6 @@ namespace BLL.FreelanceMusicStore.Services
             _unitOfWork = unitOfWork;
             
         }
-        public ApplicationUserDTO ConvertEntityToDTO(ApplicationUser instrument)
-        {           
-            var config = new MapperConfiguration(cfg => { cfg.CreateMap<ApplicationUser, ApplicationUserDTO>(); });
-
-            IMapper iMapper = config.CreateMapper();
-            var source = instrument;
-            var DTO = iMapper.Map<ApplicationUser, ApplicationUserDTO>(source);
-            return DTO;            
-        }
 
         public async Task CreateAsync(ApplicationUserDTO userDTO)
         {

@@ -14,16 +14,5 @@ namespace TestProject.Models
             public string Surname { get; set; }
             public string Password { get; set; }
             public string ConfirmPassword { get; set; }
-
-            public ApplicationUserViewModel ConvertDTOTOViewModel(ApplicationUserDTO instrument)
-            {
-                var config = new MapperConfiguration(cfg => { cfg.CreateMap<ApplicationUserDTO, ApplicationUserViewModel>(); });
-
-                IMapper iMapper = config.CreateMapper();
-                var source = instrument;
-                var viewModel = iMapper.Map<ApplicationUserDTO, ApplicationUserViewModel>(source);
-
-                return viewModel;
-        }
     }
 }

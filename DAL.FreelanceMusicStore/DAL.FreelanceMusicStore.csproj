@@ -227,6 +227,14 @@
     <Compile Include="Migrations\201911111215223_Init4.designer.cs">
       <DependentUpon>201911111215223_Init4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911130531152_PriceAdd.cs" />
+    <Compile Include="Migrations\201911130531152_PriceAdd.designer.cs">
+      <DependentUpon>201911130531152_PriceAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911130606408_DescriptionAdd.cs" />
+    <Compile Include="Migrations\201911130606408_DescriptionAdd.designer.cs">
+      <DependentUpon>201911130606408_DescriptionAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
@@ -257,6 +265,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911111215223_Init4.resx">
       <DependentUpon>201911111215223_Init4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911130531152_PriceAdd.resx">
+      <DependentUpon>201911130531152_PriceAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911130606408_DescriptionAdd.resx">
+      <DependentUpon>201911130606408_DescriptionAdd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

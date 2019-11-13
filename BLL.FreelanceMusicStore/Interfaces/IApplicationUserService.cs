@@ -9,7 +9,7 @@ using Domain.FreelanceMusicStore.Entities;
 
 namespace BLL.FreelanceMusicStore.Interfaces
 {
-    public interface IApplicationUserService : IConvertEntityToDTO<ApplicationUser, ApplicationUserDTO>
+    public interface IApplicationUserService
     {
         Task CreateAsync(ApplicationUserDTO DTO);
         Task<ApplicationUser> GetUser(string email, string password);

@@ -16,23 +16,12 @@ namespace BLL.FreelanceMusicStore.Services
             _unitOfWork = unitOfWork;
         }
 
-        public MusicInstrumentDTO ConvertEntityToDTO(MusicInstrument instrument)
-        {
-            var config = new MapperConfiguration(cfg => { cfg.CreateMap<MusicInstrument, MusicInstrumentDTO>(); });
-
-            IMapper iMapper = config.CreateMapper();
-            var source = instrument;
-            var DTO = iMapper.Map<MusicInstrument, MusicInstrumentDTO>(source);
-                
-            return DTO;
-        }
-
         public ICollection<MusicInstrumentDTO> GetAll()
         {
             var instruments = _unitOfWork.MusicInstruments.GetAll();
             ICollection<MusicInstrumentDTO> entity = new List<MusicInstrumentDTO>();
             foreach (var instrument in instruments)
-                entity.Add(ConvertEntityToDTO(instrument));
+                entity.Add(PropertiesConvert<MusicInstrument, MusicInstrumentDTO>.AllPropertiesConvert(instrument));
             return entity;
         }
     }

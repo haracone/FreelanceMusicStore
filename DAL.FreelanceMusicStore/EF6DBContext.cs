@@ -19,5 +19,11 @@ namespace DAL.FreelanceMusicStore
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;
         }
+
+        public EF6DBContext() : base("DefaultConnection")
+        {
+            Configuration.ProxyCreationEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
+        }
     }
 }

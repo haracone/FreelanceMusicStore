@@ -8,8 +8,9 @@ using Domain.FreelanceMusicStore.Entities;
 
 namespace BLL.FreelanceMusicStore.Interfaces
 {
-    public interface IOrderService : IConvertEntityToDTO<Order, OrderDTO>
+    public interface IOrderService
     {
         IQueryable<OrderDTO> GetAll();
+        void CreateOrder(OrderDTO orderDTO);
     }
 }
