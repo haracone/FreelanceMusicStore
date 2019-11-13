@@ -5,6 +5,7 @@ using DAL.FreelanceMusicStore.Interfaces;
 using System;
 using System.Web.Mvc;
 using Unity;
+using TestProject.Mapper;
 
 namespace TestProject
 {
@@ -41,6 +42,7 @@ namespace TestProject
         public static void RegisterTypes(IUnityContainer container)
         {
             container.RegisterType<IUnitOfWork, UnitOfWork>();
+            container.RegisterInstance(AutoMapperConfiguration.mapper);
             container.RegisterType<IApplicationUserService, ApplicationUserService>();
             container.RegisterType<IRoleService, RoleService>();
             container.RegisterType<IMusicInstrumentService, MusicInstrumentService>();

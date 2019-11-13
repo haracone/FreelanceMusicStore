@@ -11,10 +11,12 @@ namespace BLL.FreelanceMusicStore.Services
     public class OrderService : IOrderService
     {
         private IUnitOfWork _unitOfWork;
+        private IMapper _mapper;
 
-        public OrderService(IUnitOfWork unitOfWork)
+        public OrderService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public IQueryable<OrderDTO> GetAll()
@@ -23,16 +25,14 @@ namespace BLL.FreelanceMusicStore.Services
             List<OrderDTO> orderCollection = new List<OrderDTO>();
             foreach (var order in orderDTO)
             {
-                /*orderCollection.Add(ConvertEntityToDTO(order));*/
-                orderCollection.Add(PropertiesConvert<Order, OrderDTO>.AllPropertiesConvert(order));
+                orderCollection.Add(_mapper.Map<Order, OrderDTO>(order));
             }
             return orderCollection.AsQueryable();
         }
 
         public void CreateOrder(OrderDTO orderDTO)
         {
-            /*Order order = ConvertDTOToEntity(orderDTO);*/
-            Order order = PropertiesConvert<OrderDTO, Order>.AllPropertiesConvert(orderDTO);
+            Order order =_mapper.Map<OrderDTO, Order>(orderDTO);
             _unitOfWork.Orders.Create(order);
             _unitOfWork.SaveAsync();
         }

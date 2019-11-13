@@ -3,6 +3,7 @@ using BLL.FreelanceMusicStore.Interfaces;
 using BLL.FreelanceMusicStore.Services;
 using System.Web.Mvc;
 using TestProject.Models;
+using AutoMapper;
 
 namespace TestProject.Controllers
 {
@@ -10,24 +11,26 @@ namespace TestProject.Controllers
     {
         private IMusicInstrumentService _InstrumentService;
         private IOrderService _orderService;
+        private IMapper _mapper;
 
-        public ClientController(IMusicInstrumentService instrumentService, IOrderService orderService)
+        public ClientController(IMusicInstrumentService instrumentService, IOrderService orderService, IMapper mapper)
         {
             _InstrumentService = instrumentService;
             _orderService = orderService;
+            _mapper = mapper;
         }
 
         [Authorize(Roles = "Client")]
         public ActionResult MakeOrder()
         {
-            return View(new OrderViewModel(_InstrumentService));
+            return View(new OrderViewModel(_InstrumentService, _mapper));
         }
 
         [HttpPost]
         [Authorize(Roles = "Client")]
         public ActionResult MakeOrder(OrderViewModel order)
         {
-            _orderService.CreateOrder(PropertiesConvert<OrderViewModel, OrderDTO>.AllPropertiesConvert(order));
+            _orderService.CreateOrder(_mapper.Map<OrderViewModel, OrderDTO>(order));           
             return RedirectToAction("Index", "Home");
         }
     }

@@ -8,9 +8,9 @@
     <div class="panel-body">
         <form class="p-a-1" asp-action="MakeOrder" method="post">
             <div class="form-group">
-                @Html.LabelFor(m => m.MusicInstrumentName, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.MusicInstrumentId, new { @class = "col-md-2 control-label" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(m => m.MusicInstrumentName, new SelectList(Model.MusicInstrumentViewModel, "Name", "Name"), new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.MusicInstrumentId, new SelectList(Model.MusicInstrumentViewModel, "Id", "Name"), new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
@@ -22,7 +22,7 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Price, new { @class = "col-md-2 control-label" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Price, new { @class = "form-control", type = "number" })
                 </div>
             </div>
             <div class="form-group">

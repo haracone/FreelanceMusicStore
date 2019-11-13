@@ -12,18 +12,20 @@ namespace TestProject.Models
 {
     public class OrderViewModel
     {
-        IMusicInstrumentService _musicInstrumentService;
+        private IMusicInstrumentService _musicInstrumentService;
+        private IMapper _mapper;
         public OrderViewModel()
         {
         }
 
-        public OrderViewModel(IMusicInstrumentService musicInstrumentService)
+        public OrderViewModel(IMusicInstrumentService musicInstrumentService, IMapper mapper)
         {
+            _mapper = mapper;
             _musicInstrumentService = musicInstrumentService;
             var instruments = musicInstrumentService.GetAll();
             ICollection<MusicInstrumentViewModel> entity = new List<MusicInstrumentViewModel>();
             foreach (var instrument in instruments)
-                entity.Add(PropertiesConvert<MusicInstrumentDTO, MusicInstrumentViewModel>.AllPropertiesConvert(instrument));
+                entity.Add(_mapper.Map<MusicInstrumentDTO, MusicInstrumentViewModel>(instrument));
             MusicInstrumentViewModel = entity;
         }
 
@@ -36,7 +38,7 @@ namespace TestProject.Models
         public decimal? Price { get; set; }
         [Required]
         [Display(Name = "Music Instrument")]
-        public virtual string MusicInstrumentName { get; set; }
+        public virtual int MusicInstrumentId { get; set; }
         public virtual IEnumerable<MusicInstrumentViewModel> MusicInstrumentViewModel { get; set; }
         public virtual ClientViewModel ClientViewModel { get; set; }
         public virtual MusicianViewModel MusicianViewModel { get; set; }

@@ -109,7 +109,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApplicationUserService.cs" />
     <Compile Include="Services\ClientService.cs" />
-    <Compile Include="Services\PropertiesConvert.cs" />
     <Compile Include="Services\MusicianDTOService.cs" />
     <Compile Include="Services\MusicInstrumentService.cs" />
     <Compile Include="Services\OrderService.cs" />

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<TestProject.Models.OrderViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-sm table-striped table-bordered">
+<thead>
+    <tr>
+        <th>Music instrument</th>
+        <th>Music description</th>
+        <th>Price</th>
+    </tr>
+</thead>
+<tbody>
+    @foreach (var order in Model)
+    {
+        <tr>
+            <td>@order.MusicDescription</td>
+            <td>@order.Price</td>
+        </tr>
+    }
+</tbody>
+        </table>

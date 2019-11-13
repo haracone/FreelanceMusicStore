@@ -9,11 +9,13 @@ namespace BLL.FreelanceMusicStore.Services
 {
     public class MusicInstrumentService : IMusicInstrumentService
     {
-        IUnitOfWork _unitOfWork;
+        private IUnitOfWork _unitOfWork;
+        private IMapper _mapper;
 
-        public MusicInstrumentService(IUnitOfWork unitOfWork)
+        public MusicInstrumentService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public ICollection<MusicInstrumentDTO> GetAll()
@@ -21,7 +23,9 @@ namespace BLL.FreelanceMusicStore.Services
             var instruments = _unitOfWork.MusicInstruments.GetAll();
             ICollection<MusicInstrumentDTO> entity = new List<MusicInstrumentDTO>();
             foreach (var instrument in instruments)
-                entity.Add(PropertiesConvert<MusicInstrument, MusicInstrumentDTO>.AllPropertiesConvert(instrument));
+            {
+                entity.Add(_mapper.Map<MusicInstrument, MusicInstrumentDTO>(instrument));                
+            }
             return entity;
         }
     }
