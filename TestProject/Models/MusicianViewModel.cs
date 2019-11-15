@@ -9,7 +9,7 @@ namespace TestProject.Models
 {
     public class MusicianViewModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public Guid Guid { get; set; }
         public ApplicationUserViewModel ApplicationUserViewModel { get; set; }
         public ICollection<MusicInstrumentViewModel> MusicInstrumentViewModel { get; set; }

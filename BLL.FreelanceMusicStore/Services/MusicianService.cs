@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DAL.FreelanceMusicStore;
+using System.Threading.Tasks;
 
 namespace BLL.FreelanceMusicStore.Services
 {
@@ -22,11 +23,11 @@ namespace BLL.FreelanceMusicStore.Services
             _mapper = mapper;
         }
 
-        public void CreateMusician(ApplicationUserDTO userDTO)
+        public async Task CreateMusician(ApplicationUserDTO userDTO)
         {
             var user = _mapper.Map<ApplicationUserDTO, ApplicationUser>(userDTO);
-            _unitOfWork.Musicians.Create(new Musician() { ApplicationUser = user, Guid = user.Id});
-            _unitOfWork.SaveAsync();
+            _unitOfWork.Musicians.Create(new Musician() {Id = user.Id, Guid = user.Id});
+            await _unitOfWork.SaveAsync();
         }
 
 /*        public int FindByGuid(Guid guid)

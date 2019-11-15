@@ -5,6 +5,7 @@ using DAL.FreelanceMusicStore.Interfaces;
 using Domain.FreelanceMusicStore.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BLL.FreelanceMusicStore.Services
 {
@@ -30,11 +31,11 @@ namespace BLL.FreelanceMusicStore.Services
             return orderCollection.ToList();
         }
 
-        public void CreateOrder(OrderDTO orderDTO)
+        public async Task CreateOrder(OrderDTO orderDTO)
         {
             Order order = _mapper.Map<OrderDTO, Order>(orderDTO);
             _unitOfWork.Orders.Create(order);
-            _unitOfWork.SaveAsync();
+            await _unitOfWork.SaveAsync();
         }
 
         public void UpdateOrder(OrderDTO orderDTO)

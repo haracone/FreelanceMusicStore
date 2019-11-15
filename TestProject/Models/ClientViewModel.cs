@@ -9,7 +9,7 @@ namespace TestProject.Models
 {
     public class ClientViewModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public Guid Guid { get; set; }
         public ApplicationUserViewModel ApplicationUserViewModel { get; set; }
         public ICollection<OrderViewModel> OrdersViewModel { get; set; }

@@ -3,6 +3,7 @@ using BLL.FreelanceMusicStore.EntityDTO;
 using BLL.FreelanceMusicStore.Interfaces;
 using DAL.FreelanceMusicStore.Interfaces;
 using Domain.FreelanceMusicStore.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace BLL.FreelanceMusicStore.Services
@@ -29,7 +30,7 @@ namespace BLL.FreelanceMusicStore.Services
             return entity;
         }
 
-        public MusicInstrumentDTO GetById(int Id)
+        public MusicInstrumentDTO GetById(Guid Id)
         {
             return _mapper.Map<MusicInstrument, MusicInstrumentDTO>(_unitOfWork.MusicInstruments.GetById(Id));
         }

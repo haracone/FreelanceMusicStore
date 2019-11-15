@@ -13,7 +13,7 @@ namespace DAL.FreelanceMusicStore1.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201911131124217_Init1"; }
+            get { return "201911151010513_Init1"; }
         }
         
         string IMigrationMetadata.Source

@@ -1,5 +1,6 @@
 ﻿using DAL.FreelanceMusicStore.Interfaces;
 using Domain.FreelanceMusicStore.Entities;
+using System;
 using System.Linq;
 
 namespace DAL.FreelanceMusicStore.Repositories
@@ -17,7 +18,7 @@ namespace DAL.FreelanceMusicStore.Repositories
             _context.Orders.Add(Entity);
         }
 
-        public void Delete(int Id)
+        public void Delete(Guid Id)
         {
             _context.Orders.Remove(_context.Orders.Find(Id));
         }
@@ -32,7 +33,7 @@ namespace DAL.FreelanceMusicStore.Repositories
             _context.Entry(GetById(Entity.Id)).CurrentValues.SetValues(Entity);
         }
 
-        public Order GetById(int Id)
+        public Order GetById(Guid Id)
         {
             return _context.Orders.Find(Id);
         }

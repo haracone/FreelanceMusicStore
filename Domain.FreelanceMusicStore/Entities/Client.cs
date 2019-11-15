@@ -8,7 +8,7 @@ namespace Domain.FreelanceMusicStore.Entities
     public class Client
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [ForeignKey("ApplicationUser")]
         public Guid Guid { get; set; }
 

@@ -43,8 +43,8 @@ namespace TestProject.Controllers
         public ActionResult TakeOrder(OrderViewModel order)
         {
 
-/*            var currentUserId = _applicationUserService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
-            _applicationUserService.*/
+            var currentUserId = _applicationUserService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
+/*            _applicationUserService.*/
 /*            _orderService.UpdateOrder(_mapper.Map<OrderViewModel, OrderDTO>(order));*/
             return View("Musician/GetOrders");
         }

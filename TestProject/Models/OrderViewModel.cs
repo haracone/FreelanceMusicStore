@@ -16,6 +16,7 @@ namespace TestProject.Models
         private IMapper _mapper;
         public OrderViewModel()
         {
+            Id = Guid.NewGuid();
         }
 
         public OrderViewModel(IMusicInstrumentService musicInstrumentService, IMapper mapper)
@@ -29,8 +30,8 @@ namespace TestProject.Models
             MusicInstrumentViewModel = entity;
         }
 
-        public int Id { get; set; }
-        public int ClientId;
+        public Guid Id { get; set; }
+        public Guid ClientId;
         public int? MusicianId;
         [Required]
         [Display(Name = "Music's description")]
@@ -38,7 +39,7 @@ namespace TestProject.Models
         public decimal? Price { get; set; }
         [Required]
         [Display(Name = "Music Instrument")]
-        public int MusicInstrumentId { get; set; }
+        public Guid MusicInstrumentId { get; set; }
         public MusicInstrumentViewModel MusicInstrument{ get; set; }
         public IEnumerable<MusicInstrumentViewModel> MusicInstrumentViewModel { get; set; }
         public ClientViewModel Client{ get; set; }

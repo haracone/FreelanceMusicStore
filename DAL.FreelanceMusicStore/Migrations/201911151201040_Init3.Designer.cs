@@ -7,13 +7,13 @@ namespace DAL.FreelanceMusicStore1.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0-preview2-19525-03")]
-    public sealed partial class Init4 : IMigrationMetadata
+    public sealed partial class Init3 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Init4));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Init3));
         
         string IMigrationMetadata.Id
         {
-            get { return "201911150810544_Init4"; }
+            get { return "201911151201040_Init3"; }
         }
         
         string IMigrationMetadata.Source

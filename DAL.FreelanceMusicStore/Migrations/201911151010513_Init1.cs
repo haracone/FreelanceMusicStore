@@ -11,7 +11,7 @@
                 "dbo.Clients",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Guid(nullable: false),
                         Guid = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -82,12 +82,13 @@
                 "dbo.Orders",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Guid(nullable: false),
                         MusicDescription = c.String(),
                         Price = c.Decimal(precision: 18, scale: 2),
-                        Client_Id = c.Int(),
-                        Musician_Id = c.Int(),
-                        MusicInstrument_Id = c.Int(),
+                        MusicInstrumentId = c.Int(nullable: false),
+                        Client_Id = c.Guid(),
+                        Musician_Id = c.Guid(),
+                        MusicInstrument_Id = c.Guid(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Clients", t => t.Client_Id)
@@ -101,7 +102,7 @@
                 "dbo.Musicians",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Guid(nullable: false),
                         Guid = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -112,9 +113,9 @@
                 "dbo.MusicInstruments",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Guid(nullable: false),
                         Name = c.String(),
-                        Musician_Id = c.Int(),
+                        Musician_Id = c.Guid(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Musicians", t => t.Musician_Id)

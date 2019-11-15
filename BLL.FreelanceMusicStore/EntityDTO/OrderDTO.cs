@@ -1,12 +1,14 @@
-﻿namespace BLL.FreelanceMusicStore.EntityDTO
+﻿using System;
+
+namespace BLL.FreelanceMusicStore.EntityDTO
 {
     public class OrderDTO
     {
-        public int Id { get; set; }
-        public int ClientId;
+        public Guid Id { get; set; }
+        public Guid ClientId;
         public int? MusicianId;
         public string MusicDescription;
-        public int MusicInstrumentId { get; set; }
+        public Guid MusicInstrumentId { get; set; }
         public decimal? Price { get; set; }
         public MusicInstrumentDTO MusicInstrument{ get; set; }
         public ClientDTO Client{ get; set; }

@@ -9,6 +9,6 @@ namespace BLL.FreelanceMusicStore.Interfaces
 {
     public interface IClientService
     {
-        void CreateClient(ApplicationUserDTO user);
+        Task CreateClient(ApplicationUserDTO user);
     }
 }

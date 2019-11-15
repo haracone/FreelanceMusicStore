@@ -26,7 +26,8 @@ namespace BLL.FreelanceMusicStore.Services
             ApplicationUser user = await _unitOfWork.ApplicationUserManager.FindByEmailAsync(userDTO.Email);
             if (user == null)
             {
-                user = new ApplicationUser() { Email = userDTO.Email, UserName = userDTO.Email};
+                user = _mapper.Map<ApplicationUserDTO, ApplicationUser>(userDTO);
+/*                user = new ApplicationUser() { Email = userDTO.Email, UserName = userDTO.Email};*/
                 await _unitOfWork.ApplicationUserManager.CreateAsync(user, userDTO.Password);
                 await _unitOfWork.ApplicationUserManager.AddToRoleAsync(user.Id, userDTO.Role.Name);
                 await _unitOfWork.SaveAsync();

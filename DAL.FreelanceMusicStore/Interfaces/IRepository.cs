@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace DAL.FreelanceMusicStore.Interfaces
 {
@@ -6,8 +7,8 @@ namespace DAL.FreelanceMusicStore.Interfaces
     {
         void Create(T Entity);
         IQueryable<T> GetAll();
-        T GetById(int Id);
-        void Delete(int Id);
+        T GetById(Guid Id);
+        void Delete(Guid Id);
         void Update(T Entity);
 
     }

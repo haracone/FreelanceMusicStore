@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.FreelanceMusicStore.Entities
@@ -6,14 +7,14 @@ namespace Domain.FreelanceMusicStore.Entities
     public class Order
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [ForeignKey("Client")]
-        public int ClientId;
+        public Guid ClientId;
         [ForeignKey("Musician")]
         public int? MusicianId;
         public string MusicDescription { get; set; }
         public decimal? Price { get; set; }
-        public int MusicInstrumentId { get; set; }
+        public Guid MusicInstrumentId { get; set; }
 
         public virtual MusicInstrument MusicInstrument { get; set; }
         public virtual Client Client { get; set; }

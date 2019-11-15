@@ -179,12 +179,12 @@ namespace TestProject.Controllers
         {
             //                 if (ModelState.IsValid)
             {
-                ApplicationUserDTO user = new ApplicationUserDTO {Id = Guid.NewGuid() ,UserName = model.Email, Email = model.Email, Password = model.Password, Role = await _roleService.GetRoleByName(model.SelectedRole) };
+                ApplicationUserDTO user = new ApplicationUserDTO() {UserName = model.Email, Email = model.Email, Password = model.Password, Role = await _roleService.GetRoleByName(model.SelectedRole)};
+                await _userService.CreateAsync(user);
                 if (user.Role.Name == "Client")
-                    _clientService.CreateClient(user);
+                    await _clientService.CreateClient(user);
                 if (user.Role.Name == "Musician")
-                    _musicianService.CreateMusician(user);
-                await _userService.CreateAsync(user);               
+                    await _musicianService.CreateMusician(user);       
                 ///                    if (result.Succeeded)
                 {
                     //                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
