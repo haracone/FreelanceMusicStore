@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL.FreelanceMusicStore.Interfaces;
+﻿using DAL.FreelanceMusicStore.Identity;
 using Domain.FreelanceMusicStore.Entities;
-using DAL.FreelanceMusicStore.Identity;
+using System.Threading.Tasks;
 
 namespace DAL.FreelanceMusicStore.Interfaces
 {

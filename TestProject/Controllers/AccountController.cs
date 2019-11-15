@@ -1,14 +1,13 @@
 ﻿using BLL.FreelanceMusicStore.EntityDTO;
 using BLL.FreelanceMusicStore.Interfaces;
-using DAL.FreelanceMusicStore.Interfaces;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TestProject.Models;
-using DAL.FreelanceMusicStore.Identity;
-using System.Security.Claims;
 
 namespace TestProject.Controllers
 {
@@ -19,11 +18,15 @@ namespace TestProject.Controllers
         /*        private ApplicationUserManager _userManager;*/
         private IApplicationUserService _userService;
         private IRoleService _roleService;
+        private IClientService _clientService;
+        private IMusicianService _musicianService;
 
-        public AccountController(IApplicationUserService userService, IRoleService roleService)
+        public AccountController(IApplicationUserService userService, IRoleService roleService, IClientService clientService, IMusicianService musicianService)
         {
             _userService = userService;
             _roleService = roleService;
+            _clientService = clientService;
+            _musicianService = musicianService;
         }
 
         /*        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -176,8 +179,12 @@ namespace TestProject.Controllers
         {
             //                 if (ModelState.IsValid)
             {
-                ApplicationUserDTO user = new ApplicationUserDTO { UserName = model.Email, Email = model.Email, Password = model.Password, Role = await _roleService.GetRoleByName(model.SelectedRole) };
-                await _userService.CreateAsync(user);
+                ApplicationUserDTO user = new ApplicationUserDTO {Id = Guid.NewGuid() ,UserName = model.Email, Email = model.Email, Password = model.Password, Role = await _roleService.GetRoleByName(model.SelectedRole) };
+                if (user.Role.Name == "Client")
+                    _clientService.CreateClient(user);
+                if (user.Role.Name == "Musician")
+                    _musicianService.CreateMusician(user);
+                await _userService.CreateAsync(user);               
                 ///                    if (result.Succeeded)
                 {
                     //                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);

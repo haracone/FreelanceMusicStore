@@ -175,3 +175,6 @@ C:\Users\Intern\source\repos\TestProject\DAL.FreelanceMusicStore\bin\Debug\Unity
 C:\Users\Intern\source\repos\TestProject\DAL.FreelanceMusicStore\bin\Debug\Unity.Mvc.xml
 C:\Users\Intern\source\repos\TestProject\DAL.FreelanceMusicStore\obj\Debug\DAL.FreelanceMusicStore1.Migrations.Init1.resources
 C:\Users\Intern\source\repos\TestProject\DAL.FreelanceMusicStore\obj\Debug\DAL.FreelanceMusicStore.csproj.GenerateResource.cache
+C:\Users\Intern\source\repos\TestProject\DAL.FreelanceMusicStore\obj\Debug\DAL.FreelanceMusicStore1.Migrations.Init2.resources
+C:\Users\Intern\source\repos\TestProject\DAL.FreelanceMusicStore\obj\Debug\DAL.FreelanceMusicStore1.Migrations.Init3.resources
+C:\Users\Intern\source\repos\TestProject\DAL.FreelanceMusicStore\obj\Debug\DAL.FreelanceMusicStore1.Migrations.Init4.resources

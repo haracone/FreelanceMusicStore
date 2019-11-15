@@ -1,7 +1,6 @@
-﻿using Domain.FreelanceMusicStore.Entities;
+﻿using DAL.FreelanceMusicStore.Interfaces;
+using Domain.FreelanceMusicStore.Entities;
 using System.Linq;
-using DAL.FreelanceMusicStore.Interfaces;
-using System.Collections.Generic;
 
 namespace DAL.FreelanceMusicStore.Repositories
 {
@@ -23,7 +22,7 @@ namespace DAL.FreelanceMusicStore.Repositories
             _context.Orders.Remove(_context.Orders.Find(Id));
         }
 
-        public IEnumerable<Order> GetAll()
+        public IQueryable<Order> GetAll()
         {
             return _context.Orders;
         }

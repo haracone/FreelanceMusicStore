@@ -22,6 +22,7 @@ namespace TestProject.Mapper
             CreateMap<MusicianDTO, Musician>();
             CreateMap<MusicInstrumentDTO, MusicInstrument>();
             CreateMap<OrderDTO, Order>();
+            CreateMap<ApplicationUserDTO, ApplicationUser>();
         }
     }
 }

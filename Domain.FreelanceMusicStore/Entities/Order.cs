@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.FreelanceMusicStore.Entities
@@ -14,6 +13,7 @@ namespace Domain.FreelanceMusicStore.Entities
         public int? MusicianId;
         public string MusicDescription { get; set; }
         public decimal? Price { get; set; }
+        public int MusicInstrumentId { get; set; }
 
         public virtual MusicInstrument MusicInstrument { get; set; }
         public virtual Client Client { get; set; }

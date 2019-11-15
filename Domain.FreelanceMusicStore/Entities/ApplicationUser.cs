@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Domain.FreelanceMusicStore.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Domain.FreelanceMusicStore.Identity;
+using System;
 
 namespace Domain.FreelanceMusicStore.Entities
 {

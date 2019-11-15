@@ -1,8 +1,7 @@
-﻿using DAL.FreelanceMusicStore.Repositories;
-using DAL.FreelanceMusicStore.Identity;
+﻿using DAL.FreelanceMusicStore.Identity;
 using DAL.FreelanceMusicStore.Interfaces;
+using DAL.FreelanceMusicStore.Repositories;
 using Domain.FreelanceMusicStore.Entities;
-using System;
 using System.Threading.Tasks;
 
 namespace DAL.FreelanceMusicStore

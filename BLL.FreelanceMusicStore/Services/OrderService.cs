@@ -19,7 +19,7 @@ namespace BLL.FreelanceMusicStore.Services
             _mapper = mapper;
         }
 
-        public IQueryable<OrderDTO> GetAll()
+        public List<OrderDTO> GetAll()
         {
             var orderDTO = _unitOfWork.Orders.GetAll();
             List<OrderDTO> orderCollection = new List<OrderDTO>();
@@ -27,13 +27,20 @@ namespace BLL.FreelanceMusicStore.Services
             {
                 orderCollection.Add(_mapper.Map<Order, OrderDTO>(order));
             }
-            return orderCollection.AsQueryable();
+            return orderCollection.ToList();
         }
 
         public void CreateOrder(OrderDTO orderDTO)
         {
             Order order = _mapper.Map<OrderDTO, Order>(orderDTO);
             _unitOfWork.Orders.Create(order);
+            _unitOfWork.SaveAsync();
+        }
+
+        public void UpdateOrder(OrderDTO orderDTO)
+        {
+
+            _unitOfWork.Orders.Update(_mapper.Map<OrderDTO, Order>(orderDTO));
             _unitOfWork.SaveAsync();
         }
     }

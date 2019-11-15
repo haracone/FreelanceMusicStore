@@ -1,9 +1,9 @@
 ﻿using DAL.FreelanceMusicStore.Identity;
 using Domain.FreelanceMusicStore.Entities;
+using Domain.FreelanceMusicStore.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Data.Entity;
-using Domain.FreelanceMusicStore.Identity;
 
 namespace DAL.FreelanceMusicStore
 {

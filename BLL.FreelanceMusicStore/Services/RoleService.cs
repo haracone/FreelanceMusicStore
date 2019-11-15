@@ -1,11 +1,9 @@
-﻿using System;
+﻿using BLL.FreelanceMusicStore.Interfaces;
+using DAL.FreelanceMusicStore.Identity;
+using DAL.FreelanceMusicStore.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using DAL.FreelanceMusicStore.Interfaces;
-using DAL.FreelanceMusicStore.Identity;
-using BLL.FreelanceMusicStore.Interfaces;
 
 namespace BLL.FreelanceMusicStore.Services
 {
@@ -18,7 +16,7 @@ namespace BLL.FreelanceMusicStore.Services
             _unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<CustomRole> GetAllRoles()
+        public List<CustomRole> GetAllRoles()
         {
             return _unitOfWork.ApplicationRoleManager.Roles.Where(role => role.Name != "Admin").ToList();
         }

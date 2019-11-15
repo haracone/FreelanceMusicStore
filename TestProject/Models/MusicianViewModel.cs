@@ -11,8 +11,8 @@ namespace TestProject.Models
     {
         public int Id { get; set; }
         public Guid Guid { get; set; }
-        public virtual ApplicationUserViewModel ApplicationUserViewModel { get; set; }
-        public virtual ICollection<MusicInstrumentViewModel> MusicInstrumentViewModel { get; set; }
-        public virtual ICollection<OrderViewModel> OrdersViewModel { get; set; }
+        public ApplicationUserViewModel ApplicationUserViewModel { get; set; }
+        public ICollection<MusicInstrumentViewModel> MusicInstrumentViewModel { get; set; }
+        public ICollection<OrderViewModel> OrdersViewModel { get; set; }
     }
 }

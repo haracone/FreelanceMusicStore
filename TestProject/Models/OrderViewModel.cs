@@ -38,10 +38,10 @@ namespace TestProject.Models
         public decimal? Price { get; set; }
         [Required]
         [Display(Name = "Music Instrument")]
-        public virtual int MusicInstrumentId { get; set; }
-        public virtual MusicInstrumentViewModel MusicInstrument{ get; set; }
-        public virtual IEnumerable<MusicInstrumentViewModel> MusicInstrumentViewModel { get; set; }
-        public virtual ClientViewModel Client{ get; set; }
-        public virtual MusicianViewModel Musician{ get; set; }
+        public int MusicInstrumentId { get; set; }
+        public MusicInstrumentViewModel MusicInstrument{ get; set; }
+        public IEnumerable<MusicInstrumentViewModel> MusicInstrumentViewModel { get; set; }
+        public ClientViewModel Client{ get; set; }
+        public MusicianViewModel Musician{ get; set; }
     }
 }

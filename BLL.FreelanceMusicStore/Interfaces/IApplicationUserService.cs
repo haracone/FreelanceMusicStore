@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using BLL.FreelanceMusicStore.EntityDTO;
+﻿using BLL.FreelanceMusicStore.EntityDTO;
 using Domain.FreelanceMusicStore.Entities;
+using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace BLL.FreelanceMusicStore.Interfaces
 {
@@ -14,5 +11,6 @@ namespace BLL.FreelanceMusicStore.Interfaces
         Task CreateAsync(ApplicationUserDTO DTO);
         Task<ApplicationUser> GetUser(string email, string password);
         Task<ClaimsIdentity> CreateIdentity(ApplicationUser user, string autentificationType);
+        ApplicationUser GetUserById(Guid guid);
     }
 }

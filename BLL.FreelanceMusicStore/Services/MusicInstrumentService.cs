@@ -18,10 +18,10 @@ namespace BLL.FreelanceMusicStore.Services
             _mapper = mapper;
         }
 
-        public ICollection<MusicInstrumentDTO> GetAll()
+        public List<MusicInstrumentDTO> GetAll()
         {
             var instruments = _unitOfWork.MusicInstruments.GetAll();
-            ICollection<MusicInstrumentDTO> entity = new List<MusicInstrumentDTO>();
+            List<MusicInstrumentDTO> entity = new List<MusicInstrumentDTO>();
             foreach (var instrument in instruments)
             {
                 entity.Add(_mapper.Map<MusicInstrument, MusicInstrumentDTO>(instrument));                

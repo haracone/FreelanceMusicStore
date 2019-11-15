@@ -1,24 +1,24 @@
-﻿using AutoMapper;
-using BLL.FreelanceMusicStore.EntityDTO;
-using Domain.FreelanceMusicStore.Entities;
-using DAL.FreelanceMusicStore.Interfaces;
-using DAL.FreelanceMusicStore;
-using System.Threading.Tasks;
-using DAL.FreelanceMusicStore.Identity;
+﻿using BLL.FreelanceMusicStore.EntityDTO;
 using BLL.FreelanceMusicStore.Interfaces;
-using System.Collections;
+using DAL.FreelanceMusicStore.Interfaces;
+using Domain.FreelanceMusicStore.Entities;
 using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using System;
+using AutoMapper;
 
 namespace BLL.FreelanceMusicStore.Services
 {
     public class ApplicationUserService : IApplicationUserService
     {
         private IUnitOfWork _unitOfWork;
+        private IMapper _mapper;
 
-        public ApplicationUserService(IUnitOfWork unitOfWork)
+        public ApplicationUserService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            
+            _mapper = mapper;
         }
 
         public async Task CreateAsync(ApplicationUserDTO userDTO)
@@ -45,6 +45,11 @@ namespace BLL.FreelanceMusicStore.Services
         public Task<ClaimsIdentity> CreateIdentity(ApplicationUser user, string autentificationType)
         {
             return _unitOfWork.ApplicationUserManager.CreateIdentityAsync(user, autentificationType);
+        }
+
+        public ApplicationUser GetUserById(Guid guid)
+        {
+            return _unitOfWork.ApplicationUserManager.FindById<ApplicationUser, Guid>(guid);
         }
     }
 }
