@@ -85,18 +85,17 @@
                         Id = c.Guid(nullable: false),
                         MusicDescription = c.String(),
                         Price = c.Decimal(precision: 18, scale: 2),
-                        MusicInstrumentId = c.Int(nullable: false),
-                        Client_Id = c.Guid(),
-                        Musician_Id = c.Guid(),
-                        MusicInstrument_Id = c.Guid(),
+                        ClientId = c.Guid(nullable: false),
+                        MusicianId = c.Guid(),
+                        MusicInstrumentId = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Clients", t => t.Client_Id)
-                .ForeignKey("dbo.Musicians", t => t.Musician_Id)
-                .ForeignKey("dbo.MusicInstruments", t => t.MusicInstrument_Id)
-                .Index(t => t.Client_Id)
-                .Index(t => t.Musician_Id)
-                .Index(t => t.MusicInstrument_Id);
+                .ForeignKey("dbo.Clients", t => t.ClientId, cascadeDelete: true)
+                .ForeignKey("dbo.Musicians", t => t.MusicianId)
+                .ForeignKey("dbo.MusicInstruments", t => t.MusicInstrumentId, cascadeDelete: true)
+                .Index(t => t.ClientId)
+                .Index(t => t.MusicianId)
+                .Index(t => t.MusicInstrumentId);
             
             CreateTable(
                 "dbo.Musicians",
@@ -136,11 +135,11 @@
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Orders", "MusicInstrument_Id", "dbo.MusicInstruments");
-            DropForeignKey("dbo.Orders", "Musician_Id", "dbo.Musicians");
+            DropForeignKey("dbo.Orders", "MusicInstrumentId", "dbo.MusicInstruments");
+            DropForeignKey("dbo.Orders", "MusicianId", "dbo.Musicians");
             DropForeignKey("dbo.MusicInstruments", "Musician_Id", "dbo.Musicians");
             DropForeignKey("dbo.Musicians", "Guid", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Orders", "Client_Id", "dbo.Clients");
+            DropForeignKey("dbo.Orders", "ClientId", "dbo.Clients");
             DropForeignKey("dbo.Clients", "Guid", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
@@ -148,9 +147,9 @@
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.MusicInstruments", new[] { "Musician_Id" });
             DropIndex("dbo.Musicians", new[] { "Guid" });
-            DropIndex("dbo.Orders", new[] { "MusicInstrument_Id" });
-            DropIndex("dbo.Orders", new[] { "Musician_Id" });
-            DropIndex("dbo.Orders", new[] { "Client_Id" });
+            DropIndex("dbo.Orders", new[] { "MusicInstrumentId" });
+            DropIndex("dbo.Orders", new[] { "MusicianId" });
+            DropIndex("dbo.Orders", new[] { "ClientId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });

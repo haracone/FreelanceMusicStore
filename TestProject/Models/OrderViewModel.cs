@@ -31,8 +31,8 @@ namespace TestProject.Models
         }
 
         public Guid Id { get; set; }
-        public Guid ClientId;
-        public int? MusicianId;
+        public Guid ClientId { get; set; }
+        public Guid? MusicianId { get; set; }
         [Required]
         [Display(Name = "Music's description")]
         public string MusicDescription { get; set; }

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using TestProject.Models;
 using Microsoft.AspNet.Identity;
 using Domain.FreelanceMusicStore.Identity;
+using System.Threading.Tasks;
 
 namespace TestProject.Controllers
 {
@@ -40,13 +41,13 @@ namespace TestProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult TakeOrder(OrderViewModel order)
+        public async Task<ActionResult> TakeOrder(OrderViewModel order)
         {
-
-            var currentUserId = _applicationUserService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
-/*            _applicationUserService.*/
-/*            _orderService.UpdateOrder(_mapper.Map<OrderViewModel, OrderDTO>(order));*/
-            return View("Musician/GetOrders");
+            var currentUser = _applicationUserService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
+            order.MusicianId = currentUser.Id;
+            OrderDTO orderDTO = _mapper.Map<OrderViewModel, OrderDTO>(order);
+            await _orderService.UpdateOrder(orderDTO);
+            return RedirectToAction("GetOrders", "Musician");
         }
     }
 }

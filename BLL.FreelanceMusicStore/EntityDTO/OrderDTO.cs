@@ -6,7 +6,7 @@ namespace BLL.FreelanceMusicStore.EntityDTO
     {
         public Guid Id { get; set; }
         public Guid ClientId;
-        public int? MusicianId;
+        public Guid? MusicianId;
         public string MusicDescription;
         public Guid MusicInstrumentId { get; set; }
         public decimal? Price { get; set; }

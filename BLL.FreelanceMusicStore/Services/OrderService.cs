@@ -38,11 +38,11 @@ namespace BLL.FreelanceMusicStore.Services
             await _unitOfWork.SaveAsync();
         }
 
-        public void UpdateOrder(OrderDTO orderDTO)
+        public async Task UpdateOrder(OrderDTO orderDTO)
         {
 
             _unitOfWork.Orders.Update(_mapper.Map<OrderDTO, Order>(orderDTO));
-            _unitOfWork.SaveAsync();
+            await _unitOfWork.SaveAsync();
         }
     }
 }

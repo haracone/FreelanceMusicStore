@@ -21,14 +21,16 @@ namespace TestProject.Controllers
         private IMapper _mapper;
         private IUnitOfWork _UnitOfWork;
         private IApplicationUserService _applicationUserService;
+        private IClientService _ClientService;
 
-        public ClientController(IMusicInstrumentService instrumentService, IOrderService orderService, IMapper mapper, IUnitOfWork unitOfWork, IApplicationUserService applicationUserService)
+        public ClientController(IMusicInstrumentService instrumentService, IOrderService orderService, IMapper mapper, IUnitOfWork unitOfWork, IApplicationUserService applicationUserService, IClientService clientService)
         {
             _InstrumentService = instrumentService;
             _orderService = orderService;
             _mapper = mapper;
             _UnitOfWork = unitOfWork;
             _applicationUserService = applicationUserService;
+            _ClientService = clientService;
         }
 
         [Authorize(Roles = "Client")]
@@ -40,12 +42,12 @@ namespace TestProject.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Client")]
-        public ActionResult MakeOrder(OrderViewModel order)
+        public async Task<ActionResult> MakeOrder(OrderViewModel order)
         {
-            var currentUserId = _applicationUserService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
-            order.ClientId = currentUserId.Id;
+            var currentUser = _applicationUserService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
+            order.ClientId = currentUser.Id;
             OrderDTO orderDTO = _mapper.Map<OrderViewModel, OrderDTO>(order);
-            _orderService.CreateOrder(orderDTO);
+            await _orderService.CreateOrder(orderDTO);
             return RedirectToAction("Index", "Home");
         }
     }

@@ -8,6 +8,6 @@ namespace BLL.FreelanceMusicStore.Interfaces
     {
         List<OrderDTO> GetAll();
         Task CreateOrder(OrderDTO orderDTO);
-        void UpdateOrder(OrderDTO orderDTO);
+        Task UpdateOrder(OrderDTO orderDTO);
     }
 }

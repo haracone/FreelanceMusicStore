@@ -3,6 +3,7 @@ using BLL.FreelanceMusicStore.EntityDTO;
 using BLL.FreelanceMusicStore.Interfaces;
 using DAL.FreelanceMusicStore.Interfaces;
 using Domain.FreelanceMusicStore.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,6 +26,11 @@ namespace BLL.FreelanceMusicStore.Services
             var user = _mapper.Map<ApplicationUserDTO, ApplicationUser>(userDTO);
             _unitOfWork.Clients.Create(new Client {Id = user.Id, Guid = user.Id});
             await _unitOfWork.SaveAsync();
+        }
+
+        public ClientDTO GetClientById(Guid guid)
+        {
+            return _mapper.Map<Client, ClientDTO>(_unitOfWork.Clients.GetById(guid));
         }
     }
 }
