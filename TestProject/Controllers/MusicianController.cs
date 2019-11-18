@@ -10,6 +10,9 @@ using TestProject.Models;
 using Microsoft.AspNet.Identity;
 using Domain.FreelanceMusicStore.Identity;
 using System.Threading.Tasks;
+using System.Net.Http;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
 
 namespace TestProject.Controllers
 {
@@ -48,6 +51,26 @@ namespace TestProject.Controllers
             OrderDTO orderDTO = _mapper.Map<OrderViewModel, OrderDTO>(order);
             await _orderService.UpdateOrder(orderDTO);
             return RedirectToAction("GetOrders", "Musician");
+        }
+
+        public ActionResult UploadFile()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UploadFile(FileViewModel fileViewModel)
+        {
+            HttpClient _client = new HttpClient();
+
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/bson"));
+
+            MediaTypeFormatter bsonFormatter = new BsonMediaTypeFormatter();
+            FileDTO fileDTO = _mapper.Map<FileViewModel, FileDTO>(fileViewModel);
+            var result = await _client.PostAsync("webapi.localhost:", fileDTO, bsonFormatter);
+
+            return View();
         }
     }
 }

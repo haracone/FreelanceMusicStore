@@ -10,6 +10,7 @@ namespace TestProject.Mapper
             cfg.AddProfile<DTOToEntityProfile>();
             cfg.AddProfile<EntityToDTOProfile>();
             cfg.AddProfile<DTOToViewModelProfile>();
+            cfg.AddProfile<FileViewModelToDTO>();
         });
 
         public static IMapper mapper = config.CreateMapper();
