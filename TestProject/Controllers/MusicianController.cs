@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
+using System.IO;
 
 namespace TestProject.Controllers
 {
@@ -22,12 +23,14 @@ namespace TestProject.Controllers
         private IOrderService _orderService;
         private IMapper _mapper;
         private IApplicationUserService _applicationUserService;
-        public MusicianController(IMusicInstrumentService instrumentService, IOrderService orderService, IMapper mapper, IApplicationUserService applicationUserService)
+        private IFileStorageService _fileStorageService;
+        public MusicianController(IMusicInstrumentService instrumentService, IOrderService orderService, IMapper mapper, IApplicationUserService applicationUserService, IFileStorageService fileStorageService)
         {
             _InstrumentService = instrumentService;
             _orderService = orderService;
             _mapper = mapper;
             _applicationUserService = applicationUserService;
+            _fileStorageService = fileStorageService;
         }
 
         [Authorize(Roles = "Musician")]
@@ -55,21 +58,15 @@ namespace TestProject.Controllers
 
         public ActionResult UploadFile()
         {
-            return View();
+            return View(new FileViewModel());
         }
 
         [HttpPost]
         public async Task<ActionResult> UploadFile(FileViewModel fileViewModel)
-        {
-            HttpClient _client = new HttpClient();
-
-            _client.DefaultRequestHeaders.Accept.Clear();
-            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/bson"));
-
-            MediaTypeFormatter bsonFormatter = new BsonMediaTypeFormatter();
+        {  
+            
             FileDTO fileDTO = _mapper.Map<FileViewModel, FileDTO>(fileViewModel);
-            var result = await _client.PostAsync("webapi.localhost:", fileDTO, bsonFormatter);
-
+            var result = await _fileStorageService.UploadFileAsync(fileDTO);
             return View();
         }
     }

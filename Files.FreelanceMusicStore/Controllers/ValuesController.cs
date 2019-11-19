@@ -6,25 +6,27 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
-using BLL.FreelanceMusicStore.Services;
 using Files.FreelanceMusicStore.Models;
-using BLL.FreelanceMusicStore.EntityDTO;
 using System.Net.Http.Headers;
 using System.Net.Http.Formatting;
 using System.Web.Http.Cors;
+using System.IO;
 
 namespace Files.FreelanceMusicStore.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ValuesController : ApiController
     {
-        private FileStorageService _storageService;
         private IMapper _mapper;       
 
-        ValuesController(IMapper mapper)
+        public ValuesController(IMapper mapper)
         {
-            _storageService = new FileStorageService();
             _mapper = mapper;
+        }
+
+        public ValuesController()
+        {
+
         }
         // GET api/values
 /*        public IEnumerable<string> Get()
@@ -39,18 +41,12 @@ namespace Files.FreelanceMusicStore.Controllers
         }
 
         // POST api/values
-        public async Task PostFile(FileDTO fileDTO)
+        public async void PostFile(FileDTO fileDTO)
         {
-            var provider = new MultipartMemoryStreamProvider();
-            await Request.Content.ReadAsMultipartAsync(provider);
-
-            string folderPath = System.Web.HttpContext.Current.Server.MapPath("~/Files/");
-
-            foreach (var file in provider.Contents)
+            string folderPath = System.Web.HttpContext.Current.Server.MapPath("~/Files");
+            using (FileStream fileStream = new FileStream(folderPath + $"/{fileDTO.Id}", FileMode.Create))
             {
-                fileDTO.FileName = file.Headers.ContentDisposition.FileName;
-                fileDTO.Data = await file.ReadAsByteArrayAsync();
-                await _storageService.UploadFileAsync(fileDTO, folderPath + fileDTO.FileName + fileDTO.Id);
+                await fileStream.WriteAsync(fileDTO.Data, 0, fileDTO.Data.Length);
             }
         }
 
