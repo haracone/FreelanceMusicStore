@@ -44,5 +44,6 @@ namespace TestProject.Models
         public IEnumerable<MusicInstrumentViewModel> MusicInstrumentViewModel { get; set; }
         public ClientViewModel Client{ get; set; }
         public MusicianViewModel Musician{ get; set; }
+        public HttpPostedFileBase PostedFile { get; set; }
     }
 }

@@ -46,6 +46,19 @@ namespace TestProject.Controllers
             return View(orderViewModels.Where(orderViewModel => orderViewModel.MusicianId == null));
         }
 
+        public ActionResult GetTakenOrders()
+        {
+            var currentUser = _applicationUserService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
+            var orderDTOs = _orderService.GetAll();
+            List<OrderViewModel> orderViewModels = new List<OrderViewModel>();
+            foreach (var orderDTO in orderDTOs)
+            {
+                orderDTO.MusicInstrument = _InstrumentService.GetById(orderDTO.MusicInstrumentId);
+                orderViewModels.Add(_mapper.Map<OrderDTO, OrderViewModel>(orderDTO));
+            }
+            return View(orderViewModels.Where(orderViewModel => orderViewModel.MusicianId == currentUser.Id));
+        }
+
         [HttpPost]
         public async Task<ActionResult> TakeOrder(OrderViewModel order)
         {
@@ -56,18 +69,16 @@ namespace TestProject.Controllers
             return RedirectToAction("GetOrders", "Musician");
         }
 
-        public ActionResult UploadFile()
-        {
-            return View(new FileViewModel());
-        }
-
         [HttpPost]
-        public async Task<ActionResult> UploadFile(FileViewModel fileViewModel)
-        {  
-            
+        [Authorize(Roles = "Musician")]
+        public async Task<ActionResult> UploadFile(OrderViewModel order)
+        {
+            FileViewModel fileViewModel = new FileViewModel();
+            fileViewModel.OrderId = order.Id;
+            fileViewModel.PostedFile = order.PostedFile;
             FileDTO fileDTO = _mapper.Map<FileViewModel, FileDTO>(fileViewModel);
             var result = await _fileStorageService.UploadFileAsync(fileDTO);
-            return View();
+            return RedirectToAction("GetTakenOrders","Musician");
         }
     }
 }

@@ -33,13 +33,14 @@ namespace BLL.FreelanceMusicStore.Services
             fileDTO.PostedFile = null;
 
             var result = await _client.PostAsync("http://files.localhost.net/api/values/PostFile?id=1", fileDTO, bsonFormatter);
-
+            
             return result;
         }
 
-/*        public byte[] DownloadFile(Guid id)
+        public async void DownloadFile(Guid id)
         {
-            return
-        }*/
+            HttpClient _client = new HttpClient();
+            var result = await _client.GetAsync("http://files.localhost.net/api/values/PostFile?id=id");
+        }
     }
 }

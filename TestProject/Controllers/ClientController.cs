@@ -11,6 +11,8 @@ using DAL.FreelanceMusicStore.Repositories;
 using System;
 using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TestProject.Controllers
 {
@@ -49,6 +51,30 @@ namespace TestProject.Controllers
             OrderDTO orderDTO = _mapper.Map<OrderViewModel, OrderDTO>(order);
             await _orderService.CreateOrder(orderDTO);
             return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize(Roles = "Client")]
+        public ActionResult GetClientOrders(OrderViewModel order)
+        {
+            var currentUser = _applicationUserService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
+            var orderDTOs = _orderService.GetAll();
+            List<OrderViewModel> orderViewModels = new List<OrderViewModel>();
+            foreach (var orderDTO in orderDTOs)
+            {
+                orderDTO.MusicInstrument = _InstrumentService.GetById(orderDTO.MusicInstrumentId);
+                orderViewModels.Add(_mapper.Map<OrderDTO, OrderViewModel>(orderDTO));
+            }
+            return View(orderViewModels.Where(orderViewModel => orderViewModel.ClientId == currentUser.Id));
+        }
+
+        public async Task<ActionResult> DownloadFile(OrderViewModel order)
+        {
+            FileViewModel fileViewModel = new FileViewModel();
+            fileViewModel.OrderId = order.Id;
+            fileViewModel.PostedFile = order.PostedFile;
+            FileDTO fileDTO = _mapper.Map<FileViewModel, FileDTO>(fileViewModel);
+/*            var result = await _fileStorageService.UploadFileAsync(fileDTO);*/
+            return RedirectToAction("GetTakenOrders", "Musician");
         }
     }
 }

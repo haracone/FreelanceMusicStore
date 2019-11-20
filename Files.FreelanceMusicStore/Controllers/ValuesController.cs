@@ -35,9 +35,15 @@ namespace Files.FreelanceMusicStore.Controllers
         }
 */
         // GET api/values/5
-        public string GetFile(int id)
+        public FileDTO GetFile(Guid Id)
         {
-            return "1";
+            FileDTO file = new FileDTO();
+            string folderPath = System.Web.HttpContext.Current.Server.MapPath("~/Files");
+            using (FileStream fileStream = new FileStream(folderPath + $"/{Id}", FileMode.Open))
+            {
+                fileStream.CopyToAsync(file.PostedFile.InputStream);
+            }
+            return file;
         }
 
         // POST api/values
