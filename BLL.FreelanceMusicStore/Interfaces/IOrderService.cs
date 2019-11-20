@@ -8,7 +8,7 @@ namespace BLL.FreelanceMusicStore.Interfaces
     public interface IOrderService
     {
         List<OrderDTO> GetAll();
-        Task CreateOrder(OrderDTO orderDTO);
-        Task UpdateOrder(OrderDTO orderDTO);
+        Task<ServerRequest> CreateOrder(OrderDTO orderDTO);
+        Task<ServerRequest> UpdateOrder(OrderDTO orderDTO);
     }
 }

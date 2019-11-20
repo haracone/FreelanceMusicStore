@@ -9,7 +9,7 @@ namespace BLL.FreelanceMusicStore.Interfaces
 {
     public interface IClientService
     {
-        Task CreateClient(ApplicationUserDTO user);
+        Task<ServerRequest> CreateClient(ApplicationUserDTO user);
         ClientDTO GetClientById(Guid guid);
     }
 }

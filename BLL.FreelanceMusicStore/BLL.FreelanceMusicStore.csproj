@@ -112,6 +112,7 @@
     <Compile Include="EntityDTO\MusicInstrumentDTO.cs" />
     <Compile Include="EntityDTO\OrderDTO.cs" />
     <Compile Include="EntityDTO\FileDTO.cs" />
+    <Compile Include="EntityDTO\ServerRequest.cs" />
     <Compile Include="Interfaces\IApplicationUserService.cs" />
     <Compile Include="Interfaces\IClientService.cs" />
     <Compile Include="Interfaces\IFileStorageService.cs" />
@@ -123,7 +124,6 @@
     <Compile Include="Services\ApplicationUserService.cs" />
     <Compile Include="Services\ClientService.cs" />
     <Compile Include="Services\FileStorageService.cs" />
-    <Compile Include="Services\MusicianDTOService.cs" />
     <Compile Include="Services\MusicianService.cs" />
     <Compile Include="Services\MusicInstrumentService.cs" />
     <Compile Include="Services\OrderService.cs" />

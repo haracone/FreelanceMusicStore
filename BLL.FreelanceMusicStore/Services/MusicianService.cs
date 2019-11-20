@@ -23,17 +23,23 @@ namespace BLL.FreelanceMusicStore.Services
             _mapper = mapper;
         }
 
-        public async Task CreateMusician(ApplicationUserDTO userDTO)
+        public async Task<ServerRequest> CreateMusician(ApplicationUserDTO userDTO)
         {
-            var user = _mapper.Map<ApplicationUserDTO, ApplicationUser>(userDTO);
-            _unitOfWork.Musicians.Create(new Musician() {Id = user.Id, Guid = user.Id});
-            await _unitOfWork.SaveAsync();
+            ServerRequest serverRequest = new ServerRequest();
+            try
+            {
+                var user = _mapper.Map<ApplicationUserDTO, ApplicationUser>(userDTO);
+                _unitOfWork.Musicians.Create(new Musician() { Id = user.Id, Guid = user.Id });
+                await _unitOfWork.SaveAsync();
+                return serverRequest;
+            }
+            catch
+            {
+                serverRequest.ErrorOccured = true;
+                serverRequest.Message = "Error was occcured when you try create new musician";
+                return serverRequest;
+            }
         }
-
-/*        public int FindByGuid(Guid guid)
-        {
-            context.Musicians.Where(c => c);
-        }*/
     }
 }
 

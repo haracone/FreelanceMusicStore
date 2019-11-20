@@ -1,0 +1,22 @@
+﻿@model string[]
+
+@{
+    Layout = null;
+}
+
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <td>File</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var file in Model)
+        {
+            <tr>
+                <td><a href=@file download>Download</a></td>   
+            </tr>
+        }
+    </tbody>
+</table>
+

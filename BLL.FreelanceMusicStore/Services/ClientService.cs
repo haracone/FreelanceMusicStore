@@ -21,11 +21,23 @@ namespace BLL.FreelanceMusicStore.Services
             _mapper = mapper;
         }
 
-        public async Task CreateClient(ApplicationUserDTO userDTO)
+        public async Task<ServerRequest> CreateClient(ApplicationUserDTO userDTO)
         {
-            var user = _mapper.Map<ApplicationUserDTO, ApplicationUser>(userDTO);
-            _unitOfWork.Clients.Create(new Client {Id = user.Id, Guid = user.Id});
-            await _unitOfWork.SaveAsync();
+            ServerRequest serverRequest = new ServerRequest();
+            try
+            {
+                var user = _mapper.Map<ApplicationUserDTO, ApplicationUser>(userDTO);
+                _unitOfWork.Clients.Create(new Client { Id = user.Id, Guid = user.Id });
+                await _unitOfWork.SaveAsync();
+                serverRequest.ErrorOccured = false;
+                return serverRequest;
+            }
+            catch
+            {
+                serverRequest.ErrorOccured = true;
+                serverRequest.Message = "Error was occcured when you try create new client";
+                return serverRequest;
+            }
         }
 
         public ClientDTO GetClientById(Guid guid)

@@ -287,6 +287,7 @@
     <Content Include="Views\Musician\GetOrders.cshtml" />
     <Content Include="Views\Musician\GetTakenOrders.cshtml" />
     <Content Include="Views\Client\GetClientOrders.cshtml" />
+    <Content Include="Views\Client\AllFiles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -316,10 +317,6 @@
     <ProjectReference Include="..\Domain.FreelanceMusicStore\Domain.FreelanceMusicStore.csproj">
       <Project>{6c5a09d8-6d4e-4a49-9274-07fae8508c9c}</Project>
       <Name>Domain.FreelanceMusicStore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Files.FreelanceMusicStore\Files.FreelanceMusicStore.csproj">
-      <Project>{9cd12456-9594-416f-8ef3-213af064187b}</Project>
-      <Name>Files.FreelanceMusicStore</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

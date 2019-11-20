@@ -11,6 +11,9 @@ using System.Net.Http.Headers;
 using System.Net.Http.Formatting;
 using System.Web.Http.Cors;
 using System.IO;
+using System.Web;
+using System.IO.Compression;
+using System.Text;
 
 namespace Files.FreelanceMusicStore.Controllers
 {
@@ -29,27 +32,34 @@ namespace Files.FreelanceMusicStore.Controllers
 
         }
         // GET api/values
-/*        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-*/
+        /*        public IEnumerable<string> Get()
+                {
+                    return new string[] { "value1", "value2" };
+                }
+        */
         // GET api/values/5
-        public FileDTO GetFile(Guid Id)
+        public HttpResponseMessage GetFile(Guid Id)
         {
-            FileDTO file = new FileDTO();
-            string folderPath = System.Web.HttpContext.Current.Server.MapPath("~/Files");
-            using (FileStream fileStream = new FileStream(folderPath + $"/{Id}", FileMode.Open))
+            string folderPath = System.Web.HttpContext.Current.Server.MapPath("~\\Files" + $"\\{Id}");
+            var files = Directory.GetFiles(folderPath);
+            List<string> finalString = new List<string>();
+            foreach (var file in files)
             {
-                fileStream.CopyToAsync(file.PostedFile.InputStream);
+                string f = file.Replace("C:\\Users\\Intern\\source\\repos\\FreelanceMusicStore\\Files.FreelanceMusicStore\\", "http:\\files.localhost.net\\");
+                finalString.Add(f);
+                
             }
-            return file;
+            files = finalString.ToArray();
+            var response = this.Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StringContent(String.Join("/", files), Encoding.UTF8, "application/json");
+            return response;
         }
 
         // POST api/values
         public async void PostFile(FileDTO fileDTO)
         {
-            string folderPath = System.Web.HttpContext.Current.Server.MapPath("~/Files");
+            string folderPath = System.Web.HttpContext.Current.Server.MapPath("~/Files" +  $"/{fileDTO.OrderId}");
+            Directory.CreateDirectory(folderPath);
             using (FileStream fileStream = new FileStream(folderPath + $"/{fileDTO.Id}", FileMode.Create))
             {
                 await fileStream.WriteAsync(fileDTO.Data, 0, fileDTO.Data.Length);

@@ -21,18 +21,18 @@ namespace TestProject.Controllers
         private IMusicInstrumentService _InstrumentService;
         private IOrderService _orderService;
         private IMapper _mapper;
-        private IUnitOfWork _UnitOfWork;
         private IApplicationUserService _applicationUserService;
         private IClientService _ClientService;
+        private IFileStorageService _fileStorageService;
 
-        public ClientController(IMusicInstrumentService instrumentService, IOrderService orderService, IMapper mapper, IUnitOfWork unitOfWork, IApplicationUserService applicationUserService, IClientService clientService)
+        public ClientController(IMusicInstrumentService instrumentService, IOrderService orderService, IMapper mapper, IApplicationUserService applicationUserService, IClientService clientService, IFileStorageService fileStorageService)
         {
             _InstrumentService = instrumentService;
             _orderService = orderService;
             _mapper = mapper;
-            _UnitOfWork = unitOfWork;
             _applicationUserService = applicationUserService;
             _ClientService = clientService;
+            _fileStorageService = fileStorageService;
         }
 
         [Authorize(Roles = "Client")]
@@ -49,8 +49,16 @@ namespace TestProject.Controllers
             var currentUser = _applicationUserService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
             order.ClientId = currentUser.Id;
             OrderDTO orderDTO = _mapper.Map<OrderViewModel, OrderDTO>(order);
-            await _orderService.CreateOrder(orderDTO);
-            return RedirectToAction("Index", "Home");
+            ServerRequest serverRequest = await _orderService.CreateOrder(orderDTO);
+            if (!serverRequest.ErrorOccured)
+            {
+                return View();
+            }
+            else
+            {
+                ViewBag.Error = serverRequest.Message;
+                return View();
+            }
         }
 
         [Authorize(Roles = "Client")]
@@ -67,14 +75,13 @@ namespace TestProject.Controllers
             return View(orderViewModels.Where(orderViewModel => orderViewModel.ClientId == currentUser.Id));
         }
 
+        [Authorize(Roles = "Client")]
         public async Task<ActionResult> DownloadFile(OrderViewModel order)
-        {
-            FileViewModel fileViewModel = new FileViewModel();
-            fileViewModel.OrderId = order.Id;
-            fileViewModel.PostedFile = order.PostedFile;
-            FileDTO fileDTO = _mapper.Map<FileViewModel, FileDTO>(fileViewModel);
-/*            var result = await _fileStorageService.UploadFileAsync(fileDTO);*/
-            return RedirectToAction("GetTakenOrders", "Musician");
+        {           
+            var result = await _fileStorageService.DownloadFile(order.Id);
+            string str = await result.Content.ReadAsStringAsync();
+            string[] filesPath = str.Split('/');
+            return View("AllFiles", filesPath);
         }
     }
 }

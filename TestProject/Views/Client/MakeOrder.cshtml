@@ -1,9 +1,10 @@
 ﻿@model TestProject.Models.OrderViewModel
 @{
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<h3>@ViewBag.Error</h3>
 <div class="panel panel-success">
     <div class="panel-body">
         <form class="p-a-1" asp-action="MakeOrder" method="post">

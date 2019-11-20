@@ -21,20 +21,31 @@ namespace BLL.FreelanceMusicStore.Services
             _mapper = mapper;
         }
 
-        public async Task CreateAsync(ApplicationUserDTO userDTO)
+        public async Task<ServerRequest> CreateAsync(ApplicationUserDTO userDTO)
         {
-            ApplicationUser user = await _unitOfWork.ApplicationUserManager.FindByEmailAsync(userDTO.Email);
-            if (user == null)
+            ServerRequest serverRequest = new ServerRequest();
+            try
             {
-                user = _mapper.Map<ApplicationUserDTO, ApplicationUser>(userDTO);
-/*                user = new ApplicationUser() { Email = userDTO.Email, UserName = userDTO.Email};*/
-                await _unitOfWork.ApplicationUserManager.CreateAsync(user, userDTO.Password);
-                await _unitOfWork.ApplicationUserManager.AddToRoleAsync(user.Id, userDTO.Role.Name);
-                await _unitOfWork.SaveAsync();
+                ApplicationUser user = await _unitOfWork.ApplicationUserManager.FindByEmailAsync(userDTO.Email);
+                if (user == null)
+                {
+                    user = _mapper.Map<ApplicationUserDTO, ApplicationUser>(userDTO);
+                    /*                user = new ApplicationUser() { Email = userDTO.Email, UserName = userDTO.Email};*/
+                    await _unitOfWork.ApplicationUserManager.CreateAsync(user, userDTO.Password);
+                    await _unitOfWork.ApplicationUserManager.AddToRoleAsync(user.Id, userDTO.Role.Name);
+                    await _unitOfWork.SaveAsync();
+                    return serverRequest;
+                }
+                else
+                {
+                    return serverRequest;
+                }
             }
-            else
+            catch
             {
-                return;
+                serverRequest.ErrorOccured = true;
+                serverRequest.Message = "Error was occured when you try to create new user";
+                return serverRequest;
             }
         }
 

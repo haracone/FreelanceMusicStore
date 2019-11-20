@@ -10,6 +10,7 @@ namespace BLL.FreelanceMusicStore.Interfaces
 {
     public interface IFileStorageService
     {
-        Task<HttpResponseMessage> UploadFileAsync(FileDTO fileDTO);
+        Task<ServerRequest> UploadFileAsync(FileDTO fileDTO);
+        Task<HttpResponseMessage> DownloadFile(Guid id);
     }
 }

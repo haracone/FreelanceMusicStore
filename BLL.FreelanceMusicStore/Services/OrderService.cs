@@ -32,18 +32,39 @@ namespace BLL.FreelanceMusicStore.Services
             return orderCollection.ToList();
         }
 
-        public async Task CreateOrder(OrderDTO orderDTO)
+        public async Task<ServerRequest> CreateOrder(OrderDTO orderDTO)
         {
-            Order order = _mapper.Map<OrderDTO, Order>(orderDTO);
-            _unitOfWork.Orders.Create(order);
-            await _unitOfWork.SaveAsync();
+            ServerRequest serverRequest = new ServerRequest();
+            try
+            {
+                Order order = _mapper.Map<OrderDTO, Order>(orderDTO);
+                _unitOfWork.Orders.Create(order);
+                await _unitOfWork.SaveAsync();
+                return serverRequest;
+            }
+            catch
+            {
+                serverRequest.ErrorOccured = true;
+                serverRequest.Message = "Error was occcured when you try create new order";
+                return serverRequest;
+            }
         }
 
-        public async Task UpdateOrder(OrderDTO orderDTO)
+        public async Task<ServerRequest> UpdateOrder(OrderDTO orderDTO)
         {
-
-            _unitOfWork.Orders.Update(_mapper.Map<OrderDTO, Order>(orderDTO));
-            await _unitOfWork.SaveAsync();
+            ServerRequest serverRequest = new ServerRequest();
+            try
+            {
+                _unitOfWork.Orders.Update(_mapper.Map<OrderDTO, Order>(orderDTO));
+                await _unitOfWork.SaveAsync();
+                return serverRequest;
+            }
+            catch
+            {
+                serverRequest.ErrorOccured = true;
+                serverRequest.Message = "Error was occcured when you try update order";
+                return serverRequest;
+            }
         }
     }
 }

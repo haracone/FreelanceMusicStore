@@ -14,11 +14,22 @@
     <tbody>
         @foreach (var order in Model)
         {
-            <tr>
-                <td>@order.MusicInstrument.Name</td>
-                <td>@order.MusicDescription</td>
-                <td>@order.Price</td>     
-            </tr>
+        <tr>
+            <td>@order.MusicInstrument.Name</td>
+            <td>@order.MusicDescription</td>
+            <td>@order.Price</td>
+            <td>
+                @using (Html.BeginForm("DownloadFile", "Client", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.Hidden("Id", order.Id);
+                    @Html.Hidden("ClientId", order.ClientId);
+                    @Html.Hidden("MusicInstrumentId", order.MusicInstrument.Id);
+                    @Html.Hidden("MusicDescription", order.MusicDescription);
+                    @Html.Hidden("Price", order.Price);
+                    <input type="submit" class="btn btn-default" value="Download file" />
+                }
+            </td>
+        </tr>
         }
     </tbody>
 </table>

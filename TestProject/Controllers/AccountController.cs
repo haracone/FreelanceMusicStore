@@ -177,12 +177,13 @@ namespace TestProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            ServerRequest serverRequest = new ServerRequest();
             //                 if (ModelState.IsValid)
             {
                 ApplicationUserDTO user = new ApplicationUserDTO() {UserName = model.Email, Email = model.Email, Password = model.Password, Role = await _roleService.GetRoleByName(model.SelectedRole)};
                 await _userService.CreateAsync(user);
                 if (user.Role.Name == "Client")
-                    await _clientService.CreateClient(user);
+                     serverRequest = await _clientService.CreateClient(user);
                 if (user.Role.Name == "Musician")
                     await _musicianService.CreateMusician(user);       
                 ///                    if (result.Succeeded)
@@ -195,7 +196,7 @@ namespace TestProject.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home", serverRequest);
 
 
                 }

@@ -46,6 +46,7 @@ namespace TestProject.Controllers
             return View(orderViewModels.Where(orderViewModel => orderViewModel.MusicianId == null));
         }
 
+        [Authorize(Roles = "Musician")]
         public ActionResult GetTakenOrders()
         {
             var currentUser = _applicationUserService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
@@ -77,8 +78,16 @@ namespace TestProject.Controllers
             fileViewModel.OrderId = order.Id;
             fileViewModel.PostedFile = order.PostedFile;
             FileDTO fileDTO = _mapper.Map<FileViewModel, FileDTO>(fileViewModel);
-            var result = await _fileStorageService.UploadFileAsync(fileDTO);
-            return RedirectToAction("GetTakenOrders","Musician");
+            ServerRequest result = await _fileStorageService.UploadFileAsync(fileDTO);
+            if (!result.ErrorOccured)
+            {
+                return RedirectToAction("GetTakenOrders", "Musician");
+            }
+            else
+            {
+                ViewBag.Error = result.Message;
+                return RedirectToAction("GetTakenOrders", "Musician");
+            }
         }
     }
 }
