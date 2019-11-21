@@ -34,7 +34,7 @@ namespace TestProject.Models
         public Guid ClientId { get; set; }
         public Guid? MusicianId { get; set; }
         [Required]
-        [Display(Name = "Music's description")]
+        [Display(Name = "Description of the music")]
         public string MusicDescription { get; set; }
         public decimal? Price { get; set; }
         [Required]

@@ -1,20 +1,20 @@
-﻿@model string[]
+﻿@model IEnumerable<TestProject.Models.FilesForClientViewModel>
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutForClient.cshtml";
 }
 
-<table class="table table-sm table-striped table-bordered">
+<table class="table table-bordered">
     <thead>
         <tr>
-            <td>File</td>
+            <td>Files</td>           
         </tr>
     </thead>
     <tbody>
-        @foreach (var file in Model)
+        @foreach (var files in Model)
         {
             <tr>
-                <td><a href=@file download>Download</a></td>   
+                <td><a href=@files.FilePath download>@files.FileName</a></td>   
             </tr>
         }
     </tbody>

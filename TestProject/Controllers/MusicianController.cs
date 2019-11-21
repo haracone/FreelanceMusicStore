@@ -76,7 +76,7 @@ namespace TestProject.Controllers
         {
             FileViewModel fileViewModel = new FileViewModel();
             fileViewModel.OrderId = order.Id;
-            fileViewModel.PostedFile = order.PostedFile;
+            fileViewModel.PostedFile = order.PostedFile;           
             FileDTO fileDTO = _mapper.Map<FileViewModel, FileDTO>(fileViewModel);
             ServerRequest result = await _fileStorageService.UploadFileAsync(fileDTO);
             if (!result.ErrorOccured)

@@ -52,12 +52,12 @@ namespace TestProject.Controllers
             ServerRequest serverRequest = await _orderService.CreateOrder(orderDTO);
             if (!serverRequest.ErrorOccured)
             {
-                return View();
+                return RedirectToAction("Index", "Home");
             }
             else
             {
                 ViewBag.Error = serverRequest.Message;
-                return View();
+                return RedirectToAction("Index", "Home");
             }
         }
 
@@ -77,11 +77,19 @@ namespace TestProject.Controllers
 
         [Authorize(Roles = "Client")]
         public async Task<ActionResult> DownloadFile(OrderViewModel order)
-        {           
+        {
+            List<FilesForClientViewModel> files = new List<FilesForClientViewModel>();
             var result = await _fileStorageService.DownloadFile(order.Id);
             string str = await result.Content.ReadAsStringAsync();
             string[] filesPath = str.Split('/');
-            return View("AllFiles", filesPath);
+            int i = 0;
+            foreach(var file in filesPath)
+            {
+                int startNamePositon = file.LastIndexOf('\\');
+                int endNamePosition = file.Length;
+                files.Add(new FilesForClientViewModel() { FilePath = filesPath[i], FileName = file.Substring(startNamePositon + 1, endNamePosition - startNamePositon - 1) });
+            }           
+            return View("AllFiles", files);
         }
     }
 }

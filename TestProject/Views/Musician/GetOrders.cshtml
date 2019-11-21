@@ -1,24 +1,25 @@
 ﻿@model IEnumerable<TestProject.Models.OrderViewModel>
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutForMusician.cshtml";
 }
 
-<table class="table table-sm table-striped table-bordered">
+<table class="table table-bordered">
     <thead>
         <tr>
-            <th>Music instrument</th>
-            <th>Music description</th>
-            <th>Price</th>
+            <th class="text-center">Music instrument</th>
+            <th class="text-center">Music description</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var order in Model)
         {
                 <tr>
-                    <td>@order.MusicInstrument.Name</td>
-                    <td>@order.MusicDescription</td>
-                    <td>@order.Price</td>
-                    <td>
+                    <td class="text-center">@order.MusicInstrument.Name</td>
+                    <td class="text-center">@order.MusicDescription</td>
+                    <td class="text-center">@order.Price</td>
+                    <td class="text-center">
                         @using (Html.BeginForm("TakeOrder", "Musician"))
                         {
                             @Html.Hidden("Id", order.Id);

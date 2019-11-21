@@ -60,7 +60,7 @@ namespace Files.FreelanceMusicStore.Controllers
         {
             string folderPath = System.Web.HttpContext.Current.Server.MapPath("~/Files" +  $"/{fileDTO.OrderId}");
             Directory.CreateDirectory(folderPath);
-            using (FileStream fileStream = new FileStream(folderPath + $"/{fileDTO.Id}", FileMode.Create))
+            using (FileStream fileStream = new FileStream(folderPath + $"/{fileDTO.FileName}", FileMode.Create))
             {
                 await fileStream.WriteAsync(fileDTO.Data, 0, fileDTO.Data.Length);
             }
