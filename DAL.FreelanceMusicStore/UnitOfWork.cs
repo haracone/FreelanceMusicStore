@@ -13,6 +13,7 @@ namespace DAL.FreelanceMusicStore
         private IRepository<Musician> _musicianRepository { get; set; }
         private IRepository<MusicInstrument> _musicInstrumentRepository { get; set; }
         private IRepository<Order> _orderRepository { get; set; }
+        private IRepository<Comment> _commentRepository { get; set; }
         private ApplicationUserManager _applicationUserManager { get; set; }
         private ApplicationRoleManager _applicationRoleManager { get; set; }
 
@@ -25,6 +26,7 @@ namespace DAL.FreelanceMusicStore
             _musicianRepository = new MusicianRepository(_context);
             _musicInstrumentRepository = new MusicInstrumentRepository(_context);
             _orderRepository = new OrderRepository(_context);
+            _commentRepository = new CommentRepository(_context);
         }
 
         public async Task SaveAsync()
@@ -36,6 +38,7 @@ namespace DAL.FreelanceMusicStore
         public IRepository<Musician> Musicians { get { return _musicianRepository; } }
         public IRepository<MusicInstrument> MusicInstruments { get { return _musicInstrumentRepository; }}
         public IRepository<Order> Orders { get { return _orderRepository; } }
+        public IRepository<Comment> Comments { get { return _commentRepository; } }
         public ApplicationUserManager ApplicationUserManager { get { return _applicationUserManager; } }
         public ApplicationRoleManager ApplicationRoleManager { get { return _applicationRoleManager; } }
     }

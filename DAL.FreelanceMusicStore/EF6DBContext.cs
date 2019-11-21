@@ -13,6 +13,7 @@ namespace DAL.FreelanceMusicStore
         public DbSet<Musician> Musicians { get; set; }
         public DbSet<MusicInstrument> MusicInstruments { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         public EF6DBContext(string connection) : base(connection)
         {

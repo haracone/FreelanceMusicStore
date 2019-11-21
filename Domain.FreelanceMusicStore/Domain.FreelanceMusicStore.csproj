@@ -176,6 +176,7 @@
   <ItemGroup>
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\Client.cs" />
+    <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Musician.cs" />
     <Compile Include="Entities\MusicInstrument.cs" />
     <Compile Include="Entities\Order.cs" />

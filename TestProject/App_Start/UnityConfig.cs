@@ -50,6 +50,7 @@ namespace TestProject
             container.RegisterType<IClientService, ClientService>();
             container.RegisterType<IMusicianService, MusicianService>();
             container.RegisterType<IFileStorageService, FileStorageService>();
+            container.RegisterType<ICommentService, CommentService>();
             DependencyResolver.SetResolver(new Unity.AspNet.Mvc.UnityDependencyResolver(container));
             // NOTE: To load from web.config uncomment the line below.
             // Make sure to add a Unity.Configuration to the using statements.

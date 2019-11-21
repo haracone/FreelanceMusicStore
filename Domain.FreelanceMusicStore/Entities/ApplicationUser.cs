@@ -1,6 +1,8 @@
 ﻿using Domain.FreelanceMusicStore.Identity;
+using Domain.FreelanceMusicStore1.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.Collections.Generic;
 
 namespace Domain.FreelanceMusicStore.Entities
 {
@@ -8,5 +10,6 @@ namespace Domain.FreelanceMusicStore.Entities
     {
         public string Name { get; set; }
         public string Surname { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
 }

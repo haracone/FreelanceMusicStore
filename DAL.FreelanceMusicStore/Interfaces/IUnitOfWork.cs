@@ -10,6 +10,7 @@ namespace DAL.FreelanceMusicStore.Interfaces
         IRepository<Musician> Musicians { get; }
         IRepository<MusicInstrument> MusicInstruments { get; }
         IRepository<Order> Orders { get; }
+        IRepository<Comment> Comments { get; }
         ApplicationUserManager ApplicationUserManager { get; }
         ApplicationRoleManager ApplicationRoleManager { get; }
         Task SaveAsync();
