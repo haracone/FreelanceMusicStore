@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,5 +22,6 @@ namespace Domain.FreelanceMusicStore.Entities
         public virtual Client Client { get; set; }
         public virtual Musician Musician { get; set; }
         public virtual MusicInstrument MusicInstrument { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

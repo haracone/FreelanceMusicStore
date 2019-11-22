@@ -215,6 +215,14 @@
     <Compile Include="Migrations\201911160746221_Init1.designer.cs">
       <DependentUpon>201911160746221_Init1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911220636352_AddedComments.cs" />
+    <Compile Include="Migrations\201911220636352_AddedComments.designer.cs">
+      <DependentUpon>201911220636352_AddedComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911220722179_AddOrderIdPropToComment.cs" />
+    <Compile Include="Migrations\201911220722179_AddOrderIdPropToComment.designer.cs">
+      <DependentUpon>201911220722179_AddOrderIdPropToComment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
@@ -237,6 +245,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201911160746221_Init1.resx">
       <DependentUpon>201911160746221_Init1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911220636352_AddedComments.resx">
+      <DependentUpon>201911220636352_AddedComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911220722179_AddOrderIdPropToComment.resx">
+      <DependentUpon>201911220722179_AddOrderIdPropToComment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

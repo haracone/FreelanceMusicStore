@@ -1,11 +1,13 @@
 ﻿@model IEnumerable<TestProject.Models.OrderViewModel>
 @{
+    ViewBag.Title = "Ger your orders";
     Layout = "~/Views/Shared/_LayoutForClient.cshtml";
 }
 
 <table class="table table-bordered">
     <thead>        
         <tr>
+            <th class="text-center">Chat with musician</th>
             <th class="text-center">Music instrument</th>
             <th class="text-center">Music description</th>
             <th class="text-center">Price</th>
@@ -16,6 +18,13 @@
         @foreach (var order in Model)
         {
         <tr>
+            <td class="text-center">
+                @using (Html.BeginForm("Chat", "CommentAjax", FormMethod.Get))
+                {
+                    @Html.Hidden("Id", order.Id);
+                    <input type="submit" class="btn btn-default" value="Write to musician" />
+                }
+             </td>
             <td class="text-center">@order.MusicInstrument.Name</td>
             <td class="text-center">@order.MusicDescription</td>
             <td class="text-center">@order.Price</td>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BLL.FreelanceMusicStore.EntityDTO
 {
@@ -13,5 +14,6 @@ namespace BLL.FreelanceMusicStore.EntityDTO
         public MusicInstrumentDTO MusicInstrument{ get; set; }
         public ClientDTO Client{ get; set; }
         public MusicianDTO Musician { get; set; }
+        public ICollection<CommentDTO> CommentsDTO { get; set; }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Domain.FreelanceMusicStore.Identity;
-using Domain.FreelanceMusicStore1.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;

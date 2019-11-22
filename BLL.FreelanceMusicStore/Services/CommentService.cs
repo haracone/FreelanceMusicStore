@@ -38,5 +38,17 @@ namespace BLL.FreelanceMusicStore.Services
                 return serverRequest;
             }
         }
+
+        public  List<CommentDTO> GetAll()
+        {
+            var comments = _unitOfWork.Comments.GetAll();
+            List<CommentDTO> commentCollection = new List<CommentDTO>();
+            foreach (var comment in comments)
+            {
+                commentCollection.Add(_mapper.Map<Comment, CommentDTO>(comment));
+            }
+
+            return commentCollection;
+        } 
     }
 }

@@ -10,5 +10,6 @@ namespace BLL.FreelanceMusicStore.Interfaces
     public interface ICommentService
     {
         Task<ServerRequest> AddComment(CommentDTO commentDTO);
+        List<CommentDTO> GetAll();
     }
 }

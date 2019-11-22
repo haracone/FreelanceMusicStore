@@ -1,0 +1,44 @@
+﻿@{
+
+}
+
+@Html.Partial("Partial/ListOfCommentsPartial")
+<hr>
+
+<div id="result"></div>
+
+<input type='text' id="commentField" />
+<input type='button' id="btnPost" value='Post' />
+
+<script type="text/javascript">
+    debugger;
+    $(document).ready(function () {
+
+    $('#btnPost').click(function () {
+        var comment = new Object();
+        comment.Data = $('#commentField').val();
+        if (comment.Data != null) {
+            $.ajax({
+                type: "POST",
+                url: "/CommentAjax/Chat",
+                data: JSON.stringify(comment),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response != undefined && response != null) {
+                        $('#result').text(response + '\n' + comment.Data);
+                    } else {
+                        $('#result').text(response)
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+    });
+    });
+</script>

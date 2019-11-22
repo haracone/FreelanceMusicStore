@@ -203,6 +203,7 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\CommentAjaxController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MusicianController.cs" />
@@ -217,6 +218,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUserViewModel.cs" />
     <Compile Include="Models\ClientViewModel.cs" />
+    <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\FilesForClientViewModel.cs" />
     <Compile Include="Models\FileViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -291,6 +293,8 @@
     <Content Include="Views\Client\AllFiles.cshtml" />
     <Content Include="Views\Shared\_LayoutForClient.cshtml" />
     <Content Include="Views\Shared\_LayoutForMusician.cshtml" />
+    <Content Include="Views\CommentAjax\Chat.cshtml" />
+    <Content Include="Views\CommentAjax\Partial\ListOfCommentsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

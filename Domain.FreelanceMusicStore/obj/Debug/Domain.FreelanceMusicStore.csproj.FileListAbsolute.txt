@@ -420,3 +420,4 @@ C:\Users\a\source\repos\FreelanceMusicStore\Domain.FreelanceMusicStore\bin\Debug
 C:\Users\a\source\repos\FreelanceMusicStore\Domain.FreelanceMusicStore\bin\Debug\roslyn\VBCSCompiler.exe.config
 C:\Users\a\source\repos\FreelanceMusicStore\Domain.FreelanceMusicStore\bin\Debug\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\a\source\repos\FreelanceMusicStore\Domain.FreelanceMusicStore\bin\Debug\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Intern\source\repos\FreelanceMusicStore\Domain.FreelanceMusicStore\obj\Debug\Domain.FreelanceMusicStore.csprojAssemblyReference.cache

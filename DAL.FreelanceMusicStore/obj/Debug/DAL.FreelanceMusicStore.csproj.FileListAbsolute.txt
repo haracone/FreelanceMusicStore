@@ -500,3 +500,5 @@ C:\Users\a\source\repos\FreelanceMusicStore\DAL.FreelanceMusicStore\bin\Debug\ro
 C:\Users\a\source\repos\FreelanceMusicStore\DAL.FreelanceMusicStore\bin\Debug\roslyn\System.Xml.XPath.XDocument.dll
 C:\Users\a\source\repos\FreelanceMusicStore\DAL.FreelanceMusicStore\bin\Debug\roslyn\vbc.exe.config
 C:\Users\a\source\repos\FreelanceMusicStore\DAL.FreelanceMusicStore\bin\Debug\roslyn\vbc.rsp
+C:\Users\Intern\source\repos\FreelanceMusicStore\DAL.FreelanceMusicStore\obj\Debug\DAL.FreelanceMusicStore1.Migrations.AddedComments.resources
+C:\Users\Intern\source\repos\FreelanceMusicStore\DAL.FreelanceMusicStore\obj\Debug\DAL.FreelanceMusicStore1.Migrations.AddOrderIdPropToComment.resources

@@ -18,6 +18,7 @@ namespace TestProject.Mapper
             CreateMap<MusicianDTO, MusicianViewModel>();
             CreateMap<MusicInstrumentDTO, MusicInstrumentViewModel>();
             CreateMap<OrderDTO, OrderViewModel>();
+            CreateMap<CommentDTO, CommentViewModel>();
         }
     }
 }
