@@ -10,5 +10,6 @@ namespace BLL.FreelanceMusicStore.Interfaces
     public interface IMusicianService
     {
         Task<ServerRequest> CreateMusician(ApplicationUserDTO user);
+        MusicianDTO GetMusicianById(Guid id);
     }
 }

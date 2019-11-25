@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TestProject.Models.OrderViewModel>
+
+<script type="text/javascript">
+    var Orders = {
+        /*        ClientId: ko.observable(),
+                MusicianId: ko.observable(),
+                MusicInstrumentId: ko.observable(),
+                Price: ko.observable(),
+                MusicDescription: ko.observable(),
+        */
+        OrdersCollection: ko.observableArray(JsonAllOrders),
+    };
+
+    ko.applyBindings(new AppViewModel());
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Admin/GetAllOrders",
+        }).done(function (data) {
+            $(data).each(function (index, element) {
+                Orders.OrdersCollection.push(element);
+            });
+            ko.applyBindings(Orders);
+        }).error(function (ex) {
+            alert("Error");
+        });
+    });
+</script>
+
+<table class="table">
+    <tr>
+        <th>
+            MusicianId
+        </th>
+        <th>
+            ClientId
+        </th>
+        <th></th>
+    </tr>
+    <tbody data-bind="foreach: OrdersCollection">
+        <tr>
+            <td data-bind="text: MusicianId"></td>
+            <td data-bind="text: ClientId"></td>
+        </tr>
+    </tbody>
+</table>

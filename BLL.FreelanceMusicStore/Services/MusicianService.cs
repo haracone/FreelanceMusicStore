@@ -40,6 +40,11 @@ namespace BLL.FreelanceMusicStore.Services
                 return serverRequest;
             }
         }
+
+        public MusicianDTO GetMusicianById(Guid id)
+        {
+            return _mapper.Map<Musician, MusicianDTO>(_unitOfWork.Musicians.GetById(id));
+        }
     }
 }
 

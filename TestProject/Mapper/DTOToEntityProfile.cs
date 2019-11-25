@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BLL.FreelanceMusicStore.EntityDTO;
 using Domain.FreelanceMusicStore.Entities;
+using DAL.FreelanceMusicStore.Identity;
 
 namespace TestProject.Mapper
 {
@@ -24,6 +25,7 @@ namespace TestProject.Mapper
             CreateMap<OrderDTO, Order>();
             CreateMap<ApplicationUserDTO, ApplicationUser>();
             CreateMap<CommentDTO, Comment>();
+            CreateMap<CustomRoleDTO, CustomRole>();
         }
     }
 }

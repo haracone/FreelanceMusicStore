@@ -109,6 +109,7 @@
     <Compile Include="EntityDTO\ApplicationUserDTO.cs" />
     <Compile Include="EntityDTO\ClientDTO.cs" />
     <Compile Include="EntityDTO\CommentDTO.cs" />
+    <Compile Include="EntityDTO\CustomRoleDTO.cs" />
     <Compile Include="EntityDTO\MusicianDTO.cs" />
     <Compile Include="EntityDTO\MusicInstrumentDTO.cs" />
     <Compile Include="EntityDTO\OrderDTO.cs" />

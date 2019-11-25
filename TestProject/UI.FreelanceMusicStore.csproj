@@ -202,6 +202,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\CommentAjaxController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -219,6 +220,7 @@
     <Compile Include="Models\ApplicationUserViewModel.cs" />
     <Compile Include="Models\ClientViewModel.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
+    <Compile Include="Models\CustomRoleViewModel.cs" />
     <Compile Include="Models\FilesForClientViewModel.cs" />
     <Compile Include="Models\FileViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -295,6 +297,9 @@
     <Content Include="Views\Shared\_LayoutForMusician.cshtml" />
     <Content Include="Views\CommentAjax\Chat.cshtml" />
     <Content Include="Views\CommentAjax\Partial\ListOfCommentsPartial.cshtml" />
+    <Content Include="Views\Admin\CreateRole.cshtml" />
+    <Content Include="Views\Shared\_LayoutForAdmin.cshtml" />
+    <Content Include="Views\Admin\GetAllOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -24,13 +24,15 @@ namespace TestProject.Controllers
         private IMapper _mapper;
         private IApplicationUserService _applicationUserService;
         private IFileStorageService _fileStorageService;
-        public MusicianController(IMusicInstrumentService instrumentService, IOrderService orderService, IMapper mapper, IApplicationUserService applicationUserService, IFileStorageService fileStorageService)
+        private IMusicianService _musicianService;
+        public MusicianController(IMusicInstrumentService instrumentService, IOrderService orderService, IMapper mapper, IApplicationUserService applicationUserService, IFileStorageService fileStorageService, IMusicianService musicianService)
         {
             _InstrumentService = instrumentService;
             _orderService = orderService;
             _mapper = mapper;
             _applicationUserService = applicationUserService;
             _fileStorageService = fileStorageService;
+            _musicianService = musicianService;
         }
 
         [Authorize(Roles = "Musician")]

@@ -23,6 +23,7 @@ namespace TestProject.Mapper
             CreateMap<OrderViewModel, OrderDTO>();
             CreateMap<FileViewModel, FileDTO>();
             CreateMap<CommentViewModel, CommentDTO>();
+            CreateMap<CustomRoleViewModel, CustomRoleDTO>();
         }
     }
 }
