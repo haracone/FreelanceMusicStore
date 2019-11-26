@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "All Orders";
+    Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            MusicianId
+        </th>
+        <th>
+            ClientId
+        </th>
+        <th>
+            MusicInstrumentId
+        </th>
+        <th>
+            MusicDescription
+        </th>
+        <th>
+            Price
+        </th>
+        <th></th>
+    </tr>
+    <tbody data-bind="foreach: OrdersCollection">
+        <tr>
+            <td data-bind="text: MusicianId"></td>
+            <td data-bind="text: ClientId"></td>
+            <td data-bind="text: MusicInstrument.Name"></td>
+            <td data-bind="text: MusicDescription"></td>
+            <td data-bind="text: Price"></td>
+        </tr>
+    </tbody>
+</table>
+
+<script src="~/Scripts/AdminGetAllOrders.js"></script>

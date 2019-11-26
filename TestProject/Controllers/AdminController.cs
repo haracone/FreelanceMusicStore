@@ -44,7 +44,7 @@ namespace TestProject.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public ActionResult GetAllOrders()
+        public JsonResult GetAllOrders()
         {
             var orderDTOs = _orderService.GetAll();
             List<OrderViewModel> orderViewModels = new List<OrderViewModel>();
@@ -53,7 +53,12 @@ namespace TestProject.Controllers
                 orderDTO.MusicInstrument = _InstrumentService.GetById(orderDTO.MusicInstrumentId);
                 orderViewModels.Add(_mapper.Map<OrderDTO, OrderViewModel>(orderDTO));
             }
-            return View(orderViewModels);
+            return Json(orderViewModels, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult AllOrders()
+        {
+            return View();
         }
     }
 }
