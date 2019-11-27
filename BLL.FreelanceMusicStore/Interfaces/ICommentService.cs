@@ -11,5 +11,6 @@ namespace BLL.FreelanceMusicStore.Interfaces
     {
         Task<ServerRequest> AddComment(CommentDTO commentDTO);
         List<CommentDTO> GetAll();
+        Task<ServerRequest> DeleteComment(Guid id);
     }
 }

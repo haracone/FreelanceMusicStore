@@ -1,6 +1,9 @@
 ﻿@model  IEnumerable<TestProject.Models.CommentViewModel>
 
 @foreach (var comment in Model)
-{
-    <h4>@comment.CommentTime, @comment.Data</h4>
+{   
+        <button type="button" class="close" aria-label="Close" value="@comment.Id", id="@comment.Id">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4>@comment.CommentTime, @comment.Data</h4>
 }

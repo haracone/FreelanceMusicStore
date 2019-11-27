@@ -58,5 +58,21 @@ namespace TestProject.Controllers
                 return Json(serverRequest.Message, JsonRequestBehavior.DenyGet);
             }
         }
+
+        public async Task<JsonResult> DeleteMessage(CommentViewModel commentViewModel)
+        {
+            ServerRequest serverRequest = new ServerRequest();
+            try
+            {                
+                await _commentService.DeleteComment(commentViewModel.Id);
+                serverRequest.Message = "succesful";
+                return Json(serverRequest.Message, JsonRequestBehavior.DenyGet);
+            }
+            catch
+            {
+                serverRequest.Message = "error";
+                return Json(serverRequest.Message, JsonRequestBehavior.DenyGet);
+            }
+        }
     }
 }

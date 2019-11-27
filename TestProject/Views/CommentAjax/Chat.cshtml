@@ -12,31 +12,59 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-    $('#btnPost').click(function () {
-        var comment = new Object();
-        comment.Data = $('#commentField').val();
-        if (comment.Data != null) {
-            $.ajax({
-                type: "POST",
-                url: "/CommentAjax/Chat",
-                data: JSON.stringify(comment),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    if (response != undefined && response != null) {
-                        $('#result').text(response + '\n' + comment.Data);
-                    } else {
-                        $('#result').text(response)
+        $('#btnPost').click(function () {
+            var comment = new Object();
+            comment.Data = $('#commentField').val();
+            if (comment.Data != null) {
+                $.ajax({
+                    type: "POST",
+                    url: "/CommentAjax/Chat",
+                    data: JSON.stringify(comment),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response != undefined && response != null) {
+                            $('#result').text(response + '\n' + comment.Data);
+                        } else {
+                            $('#result').text(response)
+                        }
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
                     }
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-            });
-        }
-    });
+                });
+            }
+        });
+
+        $(".close").on('click', function() {
+            var confirmation = confirm("Do you want to delete a message?");
+            if (confirmation) {
+                var comment = new Object();
+                comment.Id = $('.close').val();
+                $.ajax({
+                    type: "POST",
+                    url: "/CommentAjax/DeleteMessage",
+                    data: JSON.stringify(comment),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response != undefined && response != null) {
+                            $('#result').text(response);
+                        } else {
+                            $('#result').text(response)
+                        }
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            }
+        });
     });
 </script>

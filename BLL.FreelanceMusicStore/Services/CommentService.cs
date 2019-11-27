@@ -49,6 +49,23 @@ namespace BLL.FreelanceMusicStore.Services
             }
 
             return commentCollection;
-        } 
+        }
+        
+        public async Task<ServerRequest> DeleteComment(Guid id)
+        {
+            ServerRequest serverRequest = new ServerRequest();
+            try
+            {
+                _unitOfWork.Comments.Delete(id);
+                await _unitOfWork.SaveAsync();
+                return serverRequest;
+            }
+            catch
+            {
+                serverRequest.ErrorOccured = true;
+                serverRequest.Message = "Error occured when you try to delete comment";
+                return serverRequest;
+            }
+        }
     }
 }
