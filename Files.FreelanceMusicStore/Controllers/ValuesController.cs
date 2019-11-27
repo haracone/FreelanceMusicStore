@@ -45,7 +45,7 @@ namespace Files.FreelanceMusicStore.Controllers
             List<string> finalString = new List<string>();
             foreach (var file in files)
             {
-                string f = file.Replace("C:\\Users\\Intern\\source\\repos\\FreelanceMusicStore\\Files.FreelanceMusicStore\\", "http:\\files.localhost.net\\");
+                string f = file.Replace(Directory.GetCurrentDirectory(), "http:\\files.localhost.net\\");
                 finalString.Add(f);
                 
             }

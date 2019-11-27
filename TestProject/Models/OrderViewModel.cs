@@ -19,14 +19,9 @@ namespace TestProject.Models
             Id = Guid.NewGuid();
         }
 
-        public OrderViewModel(IMusicInstrumentService musicInstrumentService, IMapper mapper)
+        public OrderViewModel(IEnumerable<MusicInstrumentViewModel> entity)
         {
-            _mapper = mapper;
-            _musicInstrumentService = musicInstrumentService;
-            var instruments = musicInstrumentService.GetAll();
-            ICollection<MusicInstrumentViewModel> entity = new List<MusicInstrumentViewModel>();
-            foreach (var instrument in instruments)
-                entity.Add(_mapper.Map<MusicInstrumentDTO, MusicInstrumentViewModel>(instrument));
+            
             MusicInstrumentViewModel = entity;
         }
 

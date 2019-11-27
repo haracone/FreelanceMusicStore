@@ -38,8 +38,11 @@ namespace TestProject.Controllers
         [Authorize(Roles = "Client")]
         public ActionResult MakeOrder()
         {
-
-            return View(new OrderViewModel(_InstrumentService, _mapper));
+            var instruments = _InstrumentService.GetAll();
+            ICollection<MusicInstrumentViewModel> entity = new List<MusicInstrumentViewModel>();
+            foreach (var instrument in instruments)
+                entity.Add(_mapper.Map<MusicInstrumentDTO, MusicInstrumentViewModel>(instrument));
+            return View(new OrderViewModel(entity));
         }
 
         [HttpPost]
