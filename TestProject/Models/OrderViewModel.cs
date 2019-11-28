@@ -12,8 +12,6 @@ namespace TestProject.Models
 {
     public class OrderViewModel
     {
-        private IMusicInstrumentService _musicInstrumentService;
-        private IMapper _mapper;
         public OrderViewModel()
         {
             Id = Guid.NewGuid();

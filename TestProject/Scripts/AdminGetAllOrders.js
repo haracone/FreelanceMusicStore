@@ -1,26 +1,25 @@
-﻿/*var Orders = {
-    OrdersCollection: ko.observableArray(),
-    Filters: ko.observable()
-};*/
-
-function Orders() {
+﻿var Order = function () {
     var self = this;
     self.OrdersCollection = ko.observableArray();
-    self.CurrentFilter = ko.observable();
+    self.CurrentFilter = ko.observable('');
+    self.Filters = ko.observableArray();
 
-    self.filterOrders= ko.computed(function () {
-        if (!self.CurrentFilter()) {
-            return self.Orders;
+    self.FilteredItems = ko.computed(function () {
+        var CurrentFilter = self.CurrentFilter();
+        if (!CurrentFilter || CurrentFilter == "select instrument") {
+            return self.OrdersCollection();
         } else {
-            return ko.utils.arrayFilter(self.Orders(), function (ord) {
-                return ord.ClientId == self.CurrentFilter();
+            return ko.utils.arrayFilter(self.OrdersCollection(), function (i) {
+                return i.MusicInstrumentId == CurrentFilter;
             });
         }
     });
-}
+};
 
-$(document).ready(function () {
-    var Order = new Orders();
+var Orders = new Order();
+ko.applyBindings(Orders);
+
+$(document).ready(function () {     
     $.ajax({
         type: "GET",
         url: "/Admin/GetAllOrders",
@@ -28,8 +27,20 @@ $(document).ready(function () {
         dataType: "json",
     }).done(function (data) {
         $(data).each(function (index, element) {
-            Order.OrdersCollection.push(element);
+            Orders.OrdersCollection.push(element);
+        });        
+    })
+});
+
+$(document).ready(function () {
+    $.ajax({
+        type: "GET",
+        url: "/Admin/GetAllMusicInstruments",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+    }).done(function (data) {
+        $(data).each(function (index, element) {
+            Orders.Filters.push(element);
         });
-        ko.applyBindings(Order);
     })
 });

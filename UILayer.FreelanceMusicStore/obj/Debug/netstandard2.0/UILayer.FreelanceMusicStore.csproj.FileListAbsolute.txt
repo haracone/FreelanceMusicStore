@@ -1,0 +1,8 @@
+C:\Users\Intern\source\repos\TestProject\UILayer.FreelanceMusicStore\bin\Debug\netstandard2.0\UILayer.FreelanceMusicStore.deps.json
+C:\Users\Intern\source\repos\TestProject\UILayer.FreelanceMusicStore\bin\Debug\netstandard2.0\UILayer.FreelanceMusicStore.dll
+C:\Users\Intern\source\repos\TestProject\UILayer.FreelanceMusicStore\bin\Debug\netstandard2.0\UILayer.FreelanceMusicStore.pdb
+C:\Users\Intern\source\repos\TestProject\UILayer.FreelanceMusicStore\obj\Debug\netstandard2.0\UILayer.FreelanceMusicStore.csprojAssemblyReference.cache
+C:\Users\Intern\source\repos\TestProject\UILayer.FreelanceMusicStore\obj\Debug\netstandard2.0\UILayer.FreelanceMusicStore.AssemblyInfoInputs.cache
+C:\Users\Intern\source\repos\TestProject\UILayer.FreelanceMusicStore\obj\Debug\netstandard2.0\UILayer.FreelanceMusicStore.AssemblyInfo.cs
+C:\Users\Intern\source\repos\TestProject\UILayer.FreelanceMusicStore\obj\Debug\netstandard2.0\UILayer.FreelanceMusicStore.dll
+C:\Users\Intern\source\repos\TestProject\UILayer.FreelanceMusicStore\obj\Debug\netstandard2.0\UILayer.FreelanceMusicStore.pdb

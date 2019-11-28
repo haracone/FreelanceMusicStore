@@ -45,15 +45,24 @@ namespace TestProject.Controllers
 
         [Authorize(Roles = "Admin")]
         public JsonResult GetAllOrders()
-        {
+        {        
             var orderDTOs = _orderService.GetAll();
             List<OrderViewModel> orderViewModels = new List<OrderViewModel>();
             foreach (var orderDTO in orderDTOs)
             {
                 orderDTO.MusicInstrument = _InstrumentService.GetById(orderDTO.MusicInstrumentId);
                 orderViewModels.Add(_mapper.Map<OrderDTO, OrderViewModel>(orderDTO));
-            }
+            }            
             return Json(orderViewModels, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetAllMusicInstruments()
+        {
+            var instruments = _InstrumentService.GetAll();
+            ICollection<MusicInstrumentViewModel> entity = new List<MusicInstrumentViewModel>();
+            foreach (var instrument in instruments)
+                entity.Add(_mapper.Map<MusicInstrumentDTO, MusicInstrumentViewModel>(instrument));
+            return Json(entity, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult AllOrders()

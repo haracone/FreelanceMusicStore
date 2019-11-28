@@ -8,7 +8,7 @@ namespace TestProject.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        public HomeController(IUnitOfWork work)
         {
         }
 

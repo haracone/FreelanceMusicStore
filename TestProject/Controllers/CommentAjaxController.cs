@@ -61,15 +61,27 @@ namespace TestProject.Controllers
 
         public async Task<JsonResult> DeleteMessage(CommentViewModel commentViewModel)
         {
+            CommentDTO commentDTO = _commentService.GetById(commentViewModel.Id);
+            commentViewModel.CommentTime = commentDTO.CommentTime;
             ServerRequest serverRequest = new ServerRequest();
             try
-            {                
-                await _commentService.DeleteComment(commentViewModel.Id);
-                serverRequest.Message = "succesful";
-                return Json(serverRequest.Message, JsonRequestBehavior.DenyGet);
+            {
+                if (DateTime.Now < commentViewModel.CommentTime.AddMinutes(10))
+                {
+                    await _commentService.DeleteComment(commentViewModel.Id);
+                    serverRequest.Message = "succesful";
+                    return Json(serverRequest.Message, JsonRequestBehavior.DenyGet);
+                }
+                else
+                {
+                    serverRequest.ErrorOccured = true;
+                    serverRequest.Message = "You cannot delete you comment so... late";                    
+                    return Json(serverRequest.Message, JsonRequestBehavior.DenyGet);
+                }
             }
             catch
             {
+                serverRequest.ErrorOccured = true;
                 serverRequest.Message = "error";
                 return Json(serverRequest.Message, JsonRequestBehavior.DenyGet);
             }

@@ -3,9 +3,10 @@
     Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
 }
 
-
-Music Instrument<input data-bind="value: CurrentFilter"></input>
-
+    <p>
+        Music Instrument:
+        <select data-bind="options: Filters, optionsText: 'Name', optionsValue: 'Id', value: CurrentFilter, optionsCaption : 'select instrument'"></select>
+    </p>
 
 <table class="table">
     <tr>
@@ -26,7 +27,7 @@ Music Instrument<input data-bind="value: CurrentFilter"></input>
         </th>
         <th></th>
     </tr>
-    <tbody data-bind="foreach: OrdersCollection">
+    <tbody data-bind="foreach: FilteredItems">
         <tr>
             <td data-bind="text: MusicianId"></td>
             <td data-bind="text: ClientId"></td>

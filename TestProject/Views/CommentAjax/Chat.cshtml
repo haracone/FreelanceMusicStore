@@ -40,10 +40,10 @@
         });
 
         $(".close").on('click', function() {
-            var confirmation = confirm("Do you want to delete a message?");
+            var confirmation = confirm("Do you want to delete the message?");
             if (confirmation) {
                 var comment = new Object();
-                comment.Id = $('.close').val();
+                comment.Id = $(this).prop("id");
                 $.ajax({
                     type: "POST",
                     url: "/CommentAjax/DeleteMessage",

@@ -50,6 +50,11 @@ namespace BLL.FreelanceMusicStore.Services
 
             return commentCollection;
         }
+
+        public CommentDTO GetById(Guid id)
+        {
+            return _mapper.Map<Comment, CommentDTO>(_unitOfWork.Comments.GetById(id));
+        }
         
         public async Task<ServerRequest> DeleteComment(Guid id)
         {
