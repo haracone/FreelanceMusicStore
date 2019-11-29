@@ -225,6 +225,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MusicianViewModel.cs" />
+    <Compile Include="Models\MusicInstrumentForDropdown.cs" />
     <Compile Include="Models\MusicInstrumentViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -288,6 +289,8 @@
     <Content Include="Views\Shared\_LayoutForAdmin.cshtml" />
     <Content Include="Views\Admin\AllOrders.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Manage\ChangeName.cshtml" />
+    <Content Include="Views\Manage\ChangeMusicInstruments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -50,7 +50,7 @@ namespace BLL.FreelanceMusicStore.Services
         }
 
         public Task<ApplicationUser> GetUser(string email, string password)
-        {
+        {           
             return _unitOfWork.ApplicationUserManager.FindAsync(email, password);
         }
 
@@ -62,6 +62,13 @@ namespace BLL.FreelanceMusicStore.Services
         public ApplicationUser GetUserById(Guid guid)
         {
             return _unitOfWork.ApplicationUserManager.FindById<ApplicationUser, Guid>(guid);
+        }
+
+        public async Task ChangeName(ApplicationUser user, string name, string surname)
+        {
+            user.Name = name;
+            user.Surname = surname;
+            await _unitOfWork.SaveAsync();
         }
     }
 }

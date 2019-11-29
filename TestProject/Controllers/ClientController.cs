@@ -1,18 +1,13 @@
-﻿using BLL.FreelanceMusicStore.EntityDTO;
+﻿using AutoMapper;
+using BLL.FreelanceMusicStore.EntityDTO;
 using BLL.FreelanceMusicStore.Interfaces;
-using BLL.FreelanceMusicStore.Services;
-using System.Web.Mvc;
-using TestProject.Models;
-using AutoMapper;
-using DAL.FreelanceMusicStore.Interfaces;
-using Domain.FreelanceMusicStore.Entities;
-using DAL.FreelanceMusicStore;
-using DAL.FreelanceMusicStore.Repositories;
-using System;
 using Microsoft.AspNet.Identity;
-using System.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using TestProject.Models;
 
 namespace TestProject.Controllers
 {

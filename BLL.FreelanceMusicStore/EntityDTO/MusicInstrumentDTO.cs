@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace BLL.FreelanceMusicStore.EntityDTO
 {
@@ -6,5 +8,6 @@ namespace BLL.FreelanceMusicStore.EntityDTO
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public ICollection<MusicianDTO> MusiciansDTO { get; set; }
     }
 }

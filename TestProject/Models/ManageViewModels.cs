@@ -83,4 +83,10 @@ namespace TestProject.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
+
+    public class ChangeNameViewModel
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+    }
 }

@@ -223,6 +223,10 @@
     <Compile Include="Migrations\201911220722179_AddOrderIdPropToComment.designer.cs">
       <DependentUpon>201911220722179_AddOrderIdPropToComment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911291051089_Add Collection Of Miscians to Music Instruments.cs" />
+    <Compile Include="Migrations\201911291051089_Add Collection Of Miscians to Music Instruments.designer.cs">
+      <DependentUpon>201911291051089_Add Collection Of Miscians to Music Instruments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
@@ -251,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911220722179_AddOrderIdPropToComment.resx">
       <DependentUpon>201911220722179_AddOrderIdPropToComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911291051089_Add Collection Of Miscians to Music Instruments.resx">
+      <DependentUpon>201911291051089_Add Collection Of Miscians to Music Instruments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

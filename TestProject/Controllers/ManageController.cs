@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using BLL.FreelanceMusicStore.EntityDTO;
 using BLL.FreelanceMusicStore.Interfaces;
+using DAL.FreelanceMusicStore.Interfaces;
 using Microsoft.AspNet.Identity;
 using TestProject.Models;
 
@@ -13,44 +17,94 @@ namespace TestProject.Controllers
     public class ManageController : Controller
     {
         private IApplicationUserService _userService;
+        private IMusicianService _musicianService;
+        private IClientService _clientService;
+        private IMusicInstrumentService _InstrumentService;
+        private IMapper _mapper;
+        private IUnitOfWork _unitOfWork;
         /* private ApplicationSignInManager _signInManager;
          private ApplicationUserManager _userManager;*/
 
-        public ManageController(IApplicationUserService userService)
+        public ManageController(IUnitOfWork unitOfWork,IApplicationUserService userService, IMusicianService musicianService, IClientService clientService, IMusicInstrumentService musicInstrumentService, IMapper mapper)
         {
             _userService = userService;
+            _musicianService = musicianService;
+            _clientService = clientService;
+            _InstrumentService = musicInstrumentService;
+            _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
-    /*    public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ActionResult ChangeName()
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            return View();
         }
 
-        public ApplicationSignInManager SignInManager
+        [HttpPost]
+        public async Task<ActionResult> ChangeName(ChangeNameViewModel changeNameViewModel)
         {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set 
-            { 
-                _signInManager = value; 
-            }
+            var currentUser = _userService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
+            await _userService.ChangeName(currentUser, changeNameViewModel.Name, changeNameViewModel.Surname);
+            return RedirectToAction("Index", "Home");
         }
 
-        public ApplicationUserManager UserManager
+        public ActionResult ChangeMusicInstruments()
         {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
+            var instruments = _InstrumentService.GetAll();
+            ICollection<MusicInstrumentViewModel> entity = new List<MusicInstrumentViewModel>();
+            foreach (var instrument in instruments)
+                entity.Add(_mapper.Map<MusicInstrumentDTO, MusicInstrumentViewModel>(instrument));
+            MusicInstrumentForDropdown musicInstrumentForDropdown = new MusicInstrumentForDropdown() { MusicInstuments = entity };
+            return View(musicInstrumentForDropdown);
         }
-*/
+
+        [HttpPost]
+        public async Task<ActionResult> ChangeMusicInstruments(MusicInstrumentForDropdown musicInstrumentForDropdown)
+        {
+            MusicInstrumentDTO musicInstrumentDTO = new MusicInstrumentDTO() { Id = musicInstrumentForDropdown.MusicInstrumentId};
+            var musician = _musicianService.GetMusicianById(Guid.Parse(User.Identity.GetUserId()));
+            if (musician.MusicInstrumentDTO == null)
+            {
+                musician.MusicInstrumentDTO = new List<MusicInstrumentDTO>();
+            }
+            if (!musician.MusicInstrumentDTO.Contains(_InstrumentService.GetById(musicInstrumentForDropdown.MusicInstrumentId)))
+            {
+                musician.MusicInstrumentDTO.Add(musicInstrumentDTO);
+                await _unitOfWork.SaveAsync();
+            }            
+            return RedirectToAction("Index", "Home");
+        }
+        
+        /*    public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+            {
+                UserManager = userManager;
+                SignInManager = signInManager;
+            }
+
+            public ApplicationSignInManager SignInManager
+            {
+                get
+                {
+                    return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                }
+                private set 
+                { 
+                    _signInManager = value; 
+                }
+            }
+
+            public ApplicationUserManager UserManager
+            {
+                get
+                {
+                    return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                }
+                private set
+                {
+                    _userManager = value;
+                }
+            }
+    */
         //
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)

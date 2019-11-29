@@ -12,5 +12,6 @@ namespace BLL.FreelanceMusicStore.Interfaces
         Task<ApplicationUser> GetUser(string email, string password);
         Task<ClaimsIdentity> CreateIdentity(ApplicationUser user, string autentificationType);
         ApplicationUser GetUserById(Guid guid);
+        Task ChangeName(ApplicationUser user, string name, string surname);
     }
 }
