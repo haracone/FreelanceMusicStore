@@ -38,6 +38,7 @@ namespace TestProject.Controllers
         [Authorize(Roles = "Musician")]
         public ActionResult GetOrders()
         {
+            var musician = _musicianService.GetMusicianById(Guid.Parse(User.Identity.GetUserId()));
             var orderDTOs = _orderService.GetAll();
             List<OrderViewModel> orderViewModels = new List<OrderViewModel>();
             foreach (var orderDTO in orderDTOs)
@@ -45,7 +46,8 @@ namespace TestProject.Controllers
                 orderDTO.MusicInstrument = _InstrumentService.GetById(orderDTO.MusicInstrumentId);
                 orderViewModels.Add(_mapper.Map<OrderDTO, OrderViewModel>(orderDTO));               
             }
-            return View(orderViewModels.Where(orderViewModel => orderViewModel.MusicianId == null));
+            List<MusicInstrumentViewModel> musicInstrumentViewModels = new List<MusicInstrumentViewModel>();
+            return View(orderViewModels.Where(orderViewModel => orderViewModel.MusicianId == null && orderViewModels.Contains());
         }
 
         [Authorize(Roles = "Musician")]

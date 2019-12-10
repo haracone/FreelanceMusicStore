@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper;
+﻿using AutoMapper;
 using BLL.FreelanceMusicStore.EntityDTO;
 using BLL.FreelanceMusicStore.Interfaces;
-using DAL.FreelanceMusicStore.Interfaces;
 using Microsoft.AspNet.Identity;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 using TestProject.Models;
 
 namespace TestProject.Controllers
@@ -21,18 +18,16 @@ namespace TestProject.Controllers
         private IClientService _clientService;
         private IMusicInstrumentService _InstrumentService;
         private IMapper _mapper;
-        private IUnitOfWork _unitOfWork;
         /* private ApplicationSignInManager _signInManager;
          private ApplicationUserManager _userManager;*/
 
-        public ManageController(IUnitOfWork unitOfWork,IApplicationUserService userService, IMusicianService musicianService, IClientService clientService, IMusicInstrumentService musicInstrumentService, IMapper mapper)
+        public ManageController(IApplicationUserService userService, IMusicianService musicianService, IClientService clientService, IMusicInstrumentService musicInstrumentService, IMapper mapper)
         {
             _userService = userService;
             _musicianService = musicianService;
             _clientService = clientService;
             _InstrumentService = musicInstrumentService;
             _mapper = mapper;
-            _unitOfWork = unitOfWork;
         }
 
         public ActionResult ChangeName()
@@ -61,17 +56,10 @@ namespace TestProject.Controllers
         [HttpPost]
         public async Task<ActionResult> ChangeMusicInstruments(MusicInstrumentForDropdown musicInstrumentForDropdown)
         {
-            MusicInstrumentDTO musicInstrumentDTO = new MusicInstrumentDTO() { Id = musicInstrumentForDropdown.MusicInstrumentId};
-            var musician = _musicianService.GetMusicianById(Guid.Parse(User.Identity.GetUserId()));
-            if (musician.MusicInstrumentDTO == null)
-            {
-                musician.MusicInstrumentDTO = new List<MusicInstrumentDTO>();
-            }
-            if (!musician.MusicInstrumentDTO.Contains(_InstrumentService.GetById(musicInstrumentForDropdown.MusicInstrumentId)))
-            {
-                musician.MusicInstrumentDTO.Add(musicInstrumentDTO);
-                await _unitOfWork.SaveAsync();
-            }            
+            MusicInstrumentDTO musicInstrumentDTO = _InstrumentService.GetById(musicInstrumentForDropdown.MusicInstrumentId);
+            ICollection<MusicInstrumentDTO> musicInstrumentDTOs = new List<MusicInstrumentDTO>();
+            musicInstrumentDTOs.Add(musicInstrumentDTO);
+            await _musicianService.AddMusicInstrumentsToMusician(musicInstrumentDTOs, Guid.Parse(User.Identity.GetUserId()));
             return RedirectToAction("Index", "Home");
         }
         

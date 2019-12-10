@@ -11,5 +11,6 @@ namespace BLL.FreelanceMusicStore.Interfaces
     {
         Task<ServerRequest> CreateMusician(ApplicationUserDTO user);
         MusicianDTO GetMusicianById(Guid id);
+        Task AddMusicInstrumentsToMusician(ICollection<MusicInstrumentDTO> musicInstrumentDTOs, /*MusicianDTO musicianDTO*/Guid guid);
     }
 }

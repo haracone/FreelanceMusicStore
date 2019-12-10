@@ -45,6 +45,22 @@ namespace BLL.FreelanceMusicStore.Services
         {
             return _mapper.Map<Musician, MusicianDTO>(_unitOfWork.Musicians.GetById(id));
         }
+
+        public async Task AddMusicInstrumentsToMusician(ICollection<MusicInstrumentDTO> musicInstrumentDTOs, Guid guid)
+        {
+            var musician = _unitOfWork.Musicians.GetById(guid);
+            if (musician.MusicInstrument == null)
+            {
+                musician.MusicInstrument = new List<MusicInstrument>();
+            }
+            foreach (var musicInstrumentDTO in musicInstrumentDTOs)
+            {
+                var mi = _unitOfWork.MusicInstruments.GetById(musicInstrumentDTO.Id);
+                musician.MusicInstrument.Add(mi);
+            }
+            _unitOfWork.Musicians.Update(musician);
+            await _unitOfWork.SaveAsync();
+        }
     }
 }
 
