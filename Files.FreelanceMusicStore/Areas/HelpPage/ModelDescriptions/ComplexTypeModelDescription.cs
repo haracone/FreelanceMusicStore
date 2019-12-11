@@ -1,11 +1,8 @@
 using System.Collections.ObjectModel;
 
-namespace Files.FreelanceMusicStore.Areas.HelpPage.ModelDescriptions
-{
-    public class ComplexTypeModelDescription : ModelDescription
-    {
-        public ComplexTypeModelDescription()
-        {
+namespace Files.FreelanceMusicStore.Areas.HelpPage.ModelDescriptions {
+    public class ComplexTypeModelDescription : ModelDescription {
+        public ComplexTypeModelDescription() {
             Properties = new Collection<ParameterDescription>();
         }
 

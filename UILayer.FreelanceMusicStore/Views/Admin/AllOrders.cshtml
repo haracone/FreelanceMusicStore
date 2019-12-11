@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "All Orders";
+    Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
+}
+
+    <p>
+        Music Instrument:
+        <select data-bind="options: Filters, optionsText: 'Name', optionsValue: 'Id', value: CurrentFilter, optionsCaption : 'select instrument'"></select>
+    </p>
+
+<table class="table">
+    <tr>
+        <th>
+            Musician Id
+        </th>
+        <th>
+            Client Id
+        </th>
+        <th>
+            Music Instrument
+        </th>
+        <th>
+            Music Description
+        </th>
+        <th>
+            Price
+        </th>
+        <th></th>
+    </tr>
+    <tbody data-bind="foreach: FilteredItems">
+        <tr>
+            <td data-bind="text: MusicianId"></td>
+            <td data-bind="text: ClientId"></td>
+            <td data-bind="text: MusicInstrument.Name"></td>
+            <td data-bind="text: MusicDescription"></td>
+            <td data-bind="text: Price"></td>
+        </tr>
+    </tbody>
+</table>
+
+<script src="~/Scripts/AdminGetAllOrders.js"></script>

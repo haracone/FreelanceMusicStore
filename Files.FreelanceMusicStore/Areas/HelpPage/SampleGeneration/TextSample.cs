@@ -1,16 +1,12 @@
 using System;
 
-namespace Files.FreelanceMusicStore.Areas.HelpPage
-{
+namespace Files.FreelanceMusicStore.Areas.HelpPage {
     /// <summary>
     /// This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
     /// </summary>
-    public class TextSample
-    {
-        public TextSample(string text)
-        {
-            if (text == null)
-            {
+    public class TextSample {
+        public TextSample(string text) {
+            if (text == null) {
                 throw new ArgumentNullException("text");
             }
             Text = text;
@@ -18,19 +14,16 @@ namespace Files.FreelanceMusicStore.Areas.HelpPage
 
         public string Text { get; private set; }
 
-        public override bool Equals(object obj)
-        {
+        public override bool Equals(object obj) {
             TextSample other = obj as TextSample;
             return other != null && Text == other.Text;
         }
 
-        public override int GetHashCode()
-        {
+        public override int GetHashCode() {
             return Text.GetHashCode();
         }
 
-        public override string ToString()
-        {
+        public override string ToString() {
             return Text;
         }
     }

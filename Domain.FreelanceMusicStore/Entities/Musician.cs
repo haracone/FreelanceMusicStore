@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.FreelanceMusicStore.Entities
-{
-    public class Musician
-    {
+namespace Domain.FreelanceMusicStore.Entities {
+    public class Musician {
         [Key]
         public Guid Id { get; set; }
 

@@ -1,34 +1,23 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web.Http;
-using AutoMapper;
-using Files.FreelanceMusicStore.Models;
-using System.Net.Http.Headers;
-using System.Net.Http.Formatting;
-using System.Web.Http.Cors;
-using System.IO;
-using System.Web;
-using System.IO.Compression;
 using System.Text;
+using System.Web.Http;
+using System.Web.Http.Cors;
 
-namespace Files.FreelanceMusicStore.Controllers
-{
+namespace Files.FreelanceMusicStore.Controllers {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class ValuesController : ApiController
-    {
-        private IMapper _mapper;       
+    public class ValuesController : ApiController {
+        private IMapper _mapper;
 
-        public ValuesController(IMapper mapper)
-        {
+        public ValuesController(IMapper mapper) {
             _mapper = mapper;
         }
 
-        public ValuesController()
-        {
+        public ValuesController() {
 
         }
         // GET api/values
@@ -38,16 +27,14 @@ namespace Files.FreelanceMusicStore.Controllers
                 }
         */
         // GET api/values/5
-        public HttpResponseMessage GetFile(Guid Id)
-        {
+        public HttpResponseMessage GetFile(Guid Id) {
             string folderPath = System.Web.HttpContext.Current.Server.MapPath("~\\Files" + $"\\{Id}");
-            var files = Directory.GetFiles(folderPath);
-            List<string> finalString = new List<string>();
-            foreach (var file in files)
-            {
-                string f = file.Replace(Directory.GetCurrentDirectory(), "http:\\files.localhost.net\\");
+            string[] files = Directory.GetFiles(folderPath);
+            var finalString = new List<string>();
+            foreach (var file in files) {
+                string sss = AppDomain.CurrentDomain.BaseDirectory;
+                string f = file.Replace(AppDomain.CurrentDomain.BaseDirectory, "http:\\files.localhost.net\\");
                 finalString.Add(f);
-                
             }
             files = finalString.ToArray();
             var response = this.Request.CreateResponse(HttpStatusCode.OK);
@@ -56,24 +43,22 @@ namespace Files.FreelanceMusicStore.Controllers
         }
 
         // POST api/values
-        public async void PostFile(FileDTO fileDTO)
-        {
-            string folderPath = System.Web.HttpContext.Current.Server.MapPath("~/Files" +  $"/{fileDTO.OrderId}");
+        public async void PostFile(FileDTO.FileDTO fileDTO) {
+            string folderPath = System.Web.HttpContext.Current.Server.MapPath("~/Files" + $"/{fileDTO.OrderId}");
             Directory.CreateDirectory(folderPath);
-            using (FileStream fileStream = new FileStream(folderPath + $"/{fileDTO.FileName}", FileMode.Create))
-            {
+            using (FileStream fileStream = new FileStream(Path.Combine(folderPath, fileDTO.FileName), FileMode.Create)) {
                 await fileStream.WriteAsync(fileDTO.Data, 0, fileDTO.Data.Length);
             }
         }
 
         // PUT api/values/5
-/*        public void Put(int id, [FromBody]string value)
-        {
-        }
+        /*        public void Put(int id, [FromBody]string value)
+                {
+                }
 
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-        }*/
+                // DELETE api/values/5
+                public void Delete(int id)
+                {
+                }*/
     }
 }

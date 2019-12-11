@@ -1,0 +1,22 @@
+﻿@model IEnumerable<TestProject.Models.FilesForClientViewModel>
+
+@{
+    ViewBag.Title = "All Files";
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Files</td>           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var files in Model)
+        {
+            <tr>
+                <td><a href=@files.FilePath download>@files.FileName</a></td>   
+            </tr>
+        }
+    </tbody>
+</table>
+

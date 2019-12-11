@@ -1,7 +1,5 @@
-namespace Files.FreelanceMusicStore.Areas.HelpPage.ModelDescriptions
-{
-    public class CollectionModelDescription : ModelDescription
-    {
+namespace Files.FreelanceMusicStore.Areas.HelpPage.ModelDescriptions {
+    public class CollectionModelDescription : ModelDescription {
         public ModelDescription ElementDescription { get; set; }
     }
 }

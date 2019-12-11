@@ -1,6 +1,4 @@
-namespace Files.FreelanceMusicStore.Areas.HelpPage.ModelDescriptions
-{
-    public class DictionaryModelDescription : KeyValuePairModelDescription
-    {
+namespace Files.FreelanceMusicStore.Areas.HelpPage.ModelDescriptions {
+    public class DictionaryModelDescription : KeyValuePairModelDescription {
     }
 }

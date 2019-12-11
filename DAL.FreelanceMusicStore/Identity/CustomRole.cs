@@ -2,9 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 
-namespace DAL.FreelanceMusicStore.Identity
-{
-    public class CustomRole : IdentityRole<Guid, CustomUserRole>
-    {
+namespace DAL.FreelanceMusicStore.Identity {
+    public class CustomRole : IdentityRole<Guid, CustomUserRole> {
     }
 }

@@ -3,38 +3,30 @@ using Domain.FreelanceMusicStore.Entities;
 using System;
 using System.Linq;
 
-namespace DAL.FreelanceMusicStore.Repositories
-{
-    public class MusicInstrumentRepository : IRepository<MusicInstrument>
-    {
+namespace DAL.FreelanceMusicStore.Repositories {
+    public class MusicInstrumentRepository : IRepository<MusicInstrument> {
         private EF6DBContext _context;
-        public MusicInstrumentRepository(EF6DBContext context)
-        {
+        public MusicInstrumentRepository(EF6DBContext context) {
             _context = context;
         }
 
-        public void Create(MusicInstrument Entity)
-        {
+        public void Create(MusicInstrument Entity) {
             _context.MusicInstruments.Add(Entity);
         }
 
-        public void Delete(Guid Id)
-        {
+        public void Delete(Guid Id) {
             _context.MusicInstruments.Remove(_context.MusicInstruments.Find(Id));
         }
 
-        public IQueryable<MusicInstrument> GetAll()
-        {
+        public IQueryable<MusicInstrument> GetAll() {
             return _context.MusicInstruments;
         }
 
-        public void Update(MusicInstrument Entity)
-        {
+        public void Update(MusicInstrument Entity) {
             _context.Entry(GetById(Entity.Id)).CurrentValues.SetValues(Entity);
         }
 
-        public MusicInstrument GetById(Guid Id)
-        {
+        public MusicInstrument GetById(Guid Id) {
             return _context.MusicInstruments.Find(Id);
         }
     }

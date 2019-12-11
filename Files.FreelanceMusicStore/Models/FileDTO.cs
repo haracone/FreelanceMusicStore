@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Web;
 
-namespace Files.FreelanceMusicStore.Models
-{
-    public class FileDTO
-    {
-        public FileDTO()
-        {
+namespace Files.FreelanceMusicStore.Models {
+    public class FileDTO {
+        public FileDTO() {
             Id = Guid.NewGuid();
         }
 

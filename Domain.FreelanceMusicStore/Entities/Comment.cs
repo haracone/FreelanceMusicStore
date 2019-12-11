@@ -1,16 +1,8 @@
-﻿using Domain.FreelanceMusicStore.Entities;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
 
-namespace Domain.FreelanceMusicStore.Entities
-{
-    public class Comment
-    {
+namespace Domain.FreelanceMusicStore.Entities {
+    public class Comment {
         public Guid Id { get; set; }
         public string Data { get; set; }
         public DateTime CommentTime { get; set; }

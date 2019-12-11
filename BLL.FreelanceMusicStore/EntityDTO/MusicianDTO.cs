@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Web;
 
-namespace BLL.FreelanceMusicStore.EntityDTO
-{
-    public class MusicianDTO
-    {
+namespace BLL.FreelanceMusicStore.EntityDTO {
+    public class MusicianDTO {
         public Guid Id { get; set; }
         public Guid Guid { get; set; }
 

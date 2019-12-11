@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.FreelanceMusicStore", "TestProject\UI.FreelanceMusicStore.csproj", "{D8F39070-E094-4502-B305-EEDA7A0F73F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.FreelanceMusicStore", "UILayer.FreelanceMusicStore\UI.FreelanceMusicStore.csproj", "{D8F39070-E094-4502-B305-EEDA7A0F73F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.FreelanceMusicStore", "DAL.FreelanceMusicStore\DAL.FreelanceMusicStore.csproj", "{D8DB8ACE-EBA6-46CD-B295-5B77AC82B7C6}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL.FreelanceMusicStore", "BLL.FreelanceMusicStore\BLL.FreelanceMusicStore.csproj", "{DEFD5F1A-50D6-4989-833F-E5A1115516B0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Files.FreelanceMusicStore", "Files.FreelanceMusicStore\Files.FreelanceMusicStore.csproj", "{9CD12456-9594-416F-8EF3-213AF064187B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileDTO", "FileDTOPack\FileDTO.csproj", "{2B9594EC-2F9A-488D-857E-A8788D093EB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9CD12456-9594-416F-8EF3-213AF064187B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CD12456-9594-416F-8EF3-213AF064187B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CD12456-9594-416F-8EF3-213AF064187B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B9594EC-2F9A-488D-857E-A8788D093EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B9594EC-2F9A-488D-857E-A8788D093EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B9594EC-2F9A-488D-857E-A8788D093EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B9594EC-2F9A-488D-857E-A8788D093EB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

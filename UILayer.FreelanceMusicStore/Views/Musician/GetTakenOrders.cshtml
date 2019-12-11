@@ -1,0 +1,38 @@
+﻿@model IEnumerable<TestProject.Models.OrderViewModel>
+@{
+    ViewBag.Title = "Browse taken orders";
+}
+
+<h3>@ViewBag.Error</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center">Music instrument</th>
+            <th class="text-center">Music description</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Upload files</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td class="text-center">@order.MusicInstrument.Name</td>
+                <td class="text-center">@order.MusicDescription</td>
+                <td class="text-center">@order.Price</td>
+                <td>
+                    @using (Html.BeginForm("UploadFile", "Musician", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.TextBox("PostedFile", order.PostedFile, new { type = "file", @class = "input-xlarge" })
+                        @Html.Hidden("Id", order.Id);
+                        @Html.Hidden("ClientId", order.ClientId);
+                        @Html.Hidden("MusicInstrumentId", order.MusicInstrument.Id);
+                        @Html.Hidden("MusicDescription", order.MusicDescription);
+                        @Html.Hidden("Price", order.Price);
+                        <input type="submit" class="btn btn-default" value="Upload" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

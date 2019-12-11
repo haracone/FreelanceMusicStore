@@ -6,32 +6,26 @@ using Domain.FreelanceMusicStore.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace BLL.FreelanceMusicStore.Services
-{
-    public class MusicInstrumentService : IMusicInstrumentService
-    {
+namespace BLL.FreelanceMusicStore.Services {
+    public class MusicInstrumentService : IMusicInstrumentService {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
 
-        public MusicInstrumentService(IUnitOfWork unitOfWork, IMapper mapper)
-        {
+        public MusicInstrumentService(IUnitOfWork unitOfWork, IMapper mapper) {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
-        public List<MusicInstrumentDTO> GetAll()
-        {
+        public List<MusicInstrumentDTO> GetAll() {
             var instruments = _unitOfWork.MusicInstruments.GetAll();
             List<MusicInstrumentDTO> entity = new List<MusicInstrumentDTO>();
-            foreach (var instrument in instruments)
-            {
-                entity.Add(_mapper.Map<MusicInstrument, MusicInstrumentDTO>(instrument));                
+            foreach (var instrument in instruments) {
+                entity.Add(_mapper.Map<MusicInstrument, MusicInstrumentDTO>(instrument));
             }
             return entity;
         }
 
-        public MusicInstrumentDTO GetById(Guid Id)
-        {
+        public MusicInstrumentDTO GetById(Guid Id) {
             return _mapper.Map<MusicInstrument, MusicInstrumentDTO>(_unitOfWork.MusicInstruments.GetById(Id));
         }
     }

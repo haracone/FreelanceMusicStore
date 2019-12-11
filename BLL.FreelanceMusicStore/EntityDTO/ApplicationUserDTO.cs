@@ -2,12 +2,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace BLL.FreelanceMusicStore.EntityDTO
-{
-    public class ApplicationUserDTO
-    {
-        public ApplicationUserDTO()
-        {
+namespace BLL.FreelanceMusicStore.EntityDTO {
+    public class ApplicationUserDTO {
+        public ApplicationUserDTO() {
             Id = Guid.NewGuid();
         }
         public Guid Id { get; set; }

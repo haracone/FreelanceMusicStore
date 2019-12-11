@@ -1,6 +1,4 @@
-namespace Files.FreelanceMusicStore.Areas.HelpPage.ModelDescriptions
-{
-    public class SimpleTypeModelDescription : ModelDescription
-    {
+namespace Files.FreelanceMusicStore.Areas.HelpPage.ModelDescriptions {
+    public class SimpleTypeModelDescription : ModelDescription {
     }
 }

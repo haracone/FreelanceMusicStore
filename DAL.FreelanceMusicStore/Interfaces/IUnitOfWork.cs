@@ -2,10 +2,8 @@
 using Domain.FreelanceMusicStore.Entities;
 using System.Threading.Tasks;
 
-namespace DAL.FreelanceMusicStore.Interfaces
-{
-    public interface IUnitOfWork
-    {
+namespace DAL.FreelanceMusicStore.Interfaces {
+    public interface IUnitOfWork {
         IRepository<Client> Clients { get; }
         IRepository<Musician> Musicians { get; }
         IRepository<MusicInstrument> MusicInstruments { get; }

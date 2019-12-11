@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BLL.FreelanceMusicStore.EntityDTO
-{
-    public class ClientDTO
-    {
+namespace BLL.FreelanceMusicStore.EntityDTO {
+    public class ClientDTO {
         public Guid Id { get; set; }
         public Guid Guid { get; set; }
 
