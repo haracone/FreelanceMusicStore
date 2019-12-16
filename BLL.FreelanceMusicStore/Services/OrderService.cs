@@ -3,6 +3,7 @@ using BLL.FreelanceMusicStore.EntityDTO;
 using BLL.FreelanceMusicStore.Interfaces;
 using DAL.FreelanceMusicStore.Interfaces;
 using Domain.FreelanceMusicStore.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -53,6 +54,16 @@ namespace BLL.FreelanceMusicStore.Services {
                 serverRequest.Message = "Error was occcured when you try update order";
                 return serverRequest;
             }
+        }
+
+        public List<OrderDTO> GetOrderByClientId(Guid guid) {
+            List<Order> orders = _unitOfWork.Orders.GetAll().ToList();
+            var orderDTOs = new List<OrderDTO>();
+            foreach (var order in orders) {
+                order.MusicInstrument = _unitOfWork.MusicInstruments.GetById(order.MusicInstrumentId);
+                orderDTOs.Add(_mapper.Map<Order, OrderDTO>(order));
+            }
+            return orderDTOs;
         }
     }
 }

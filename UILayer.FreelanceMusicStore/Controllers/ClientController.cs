@@ -65,13 +65,12 @@ namespace TestProject.Controllers {
         public ActionResult GetClientOrders(OrderViewModel order) {
             var currentUser = _applicationUserService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
             _logger.Info("User " + currentUser.Id + " get url " + HttpContext.Request.Url.AbsoluteUri);
-            var orderDTOs = _orderService.GetAll();
+            List<OrderDTO> orderDTOs = _orderService.GetOrderByClientId(currentUser.Id);
             var orderViewModels = new List<OrderViewModel>();
-            foreach (var orderDTO in orderDTOs) {
-                orderDTO.MusicInstrument = _musicInstrumentService.GetById(orderDTO.MusicInstrumentId);
+            foreach(var orderDTO in orderDTOs) {
                 orderViewModels.Add(_mapper.Map<OrderDTO, OrderViewModel>(orderDTO));
             }
-            return View(orderViewModels.Where(orderViewModel => orderViewModel.ClientId == currentUser.Id));
+            return View(orderViewModels);            
         }
 
         [Authorize(Roles = "Client")]
