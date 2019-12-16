@@ -40,12 +40,12 @@ namespace BLL.FreelanceMusicStore.Services {
 
         public async Task AddMusicInstrumentsToMusician(ICollection<MusicInstrumentDTO> musicInstrumentDTOs, Guid guid) {
             var musician = _unitOfWork.Musicians.GetById(guid);
-            if (musician.MusicInstrument == null) {
-                musician.MusicInstrument = new List<MusicInstrument>();
+            if (musician.MusicInstruments == null) {
+                musician.MusicInstruments = new List<MusicInstrument>();
             }
             foreach (var musicInstrumentDTO in musicInstrumentDTOs) {
                 var mi = _unitOfWork.MusicInstruments.GetById(musicInstrumentDTO.Id);
-                musician.MusicInstrument.Add(mi);
+                musician.MusicInstruments.Add(mi);
             }
             _unitOfWork.Musicians.Update(musician);
             await _unitOfWork.SaveAsync();

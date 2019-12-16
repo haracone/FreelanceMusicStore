@@ -6,6 +6,7 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using TestProject.ExceptionFilter;
@@ -15,7 +16,7 @@ namespace TestProject.Controllers {
     [ExceptionFilter]
     public class ClientController : Controller {
         private static Logger _logger;
-        private IMusicInstrumentService _InstrumentService;
+        private IMusicInstrumentService _musicInstrumentService;
         private IOrderService _orderService;
         private IMapper _mapper;
         private IApplicationUserService _applicationUserService;
@@ -24,7 +25,7 @@ namespace TestProject.Controllers {
 
         public ClientController(IMusicInstrumentService instrumentService, IOrderService orderService, IMapper mapper, IApplicationUserService applicationUserService, IClientService clientService, IFileStorageService fileStorageService) {
             _logger = LogManager.GetCurrentClassLogger();
-            _InstrumentService = instrumentService;
+            _musicInstrumentService = instrumentService;
             _orderService = orderService;
             _mapper = mapper;
             _applicationUserService = applicationUserService;
@@ -36,7 +37,7 @@ namespace TestProject.Controllers {
         public ActionResult MakeOrder() {
             var currentUser = _applicationUserService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
             _logger.Info("User " + currentUser.Id + " get url " + HttpContext.Request.Url.AbsoluteUri);
-            var instruments = _InstrumentService.GetAll();
+            var instruments = _musicInstrumentService.GetAll();
             ICollection<MusicInstrumentViewModel> entity = new List<MusicInstrumentViewModel>();
             foreach (var instrument in instruments)
                 entity.Add(_mapper.Map<MusicInstrumentDTO, MusicInstrumentViewModel>(instrument));
@@ -67,7 +68,7 @@ namespace TestProject.Controllers {
             var orderDTOs = _orderService.GetAll();
             var orderViewModels = new List<OrderViewModel>();
             foreach (var orderDTO in orderDTOs) {
-                orderDTO.MusicInstrument = _InstrumentService.GetById(orderDTO.MusicInstrumentId);
+                orderDTO.MusicInstrument = _musicInstrumentService.GetById(orderDTO.MusicInstrumentId);
                 orderViewModels.Add(_mapper.Map<OrderDTO, OrderViewModel>(orderDTO));
             }
             return View(orderViewModels.Where(orderViewModel => orderViewModel.ClientId == currentUser.Id));
@@ -75,15 +76,16 @@ namespace TestProject.Controllers {
 
         [Authorize(Roles = "Client")]
         public async Task<ActionResult> DownloadFile(OrderViewModel order) {
+            var currentUser = _applicationUserService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
+            _logger.Info("User " + currentUser.Id + " get url " + HttpContext.Request.Url.AbsoluteUri);
             var files = new List<FilesForClientViewModel>();
-            var result = await _fileStorageService.DownloadFile(order.Id);
+            HttpResponseMessage result = await _fileStorageService.DownloadFile(order.Id);
             string str = await result.Content.ReadAsStringAsync();
             string[] filesPath = str.Split('/');
-            int i = 0;
             foreach (var file in filesPath) {
                 int startNamePositon = file.LastIndexOf('\\');
                 int endNamePosition = file.Length;
-                files.Add(new FilesForClientViewModel() { FilePath = filesPath[i], FileName = file.Substring(startNamePositon + 1, endNamePosition - startNamePositon - 1) });
+                files.Add(new FilesForClientViewModel() { FilePath = file, FileName = file.Substring(startNamePositon + 1, endNamePosition - startNamePositon - 1) });
             }
             return View("AllFiles", files);
         }

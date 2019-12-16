@@ -5,12 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.FreelanceMusicStore.Entities {
     public class Order {
-        [Key]
         public Guid Id { get; set; }
         public string MusicDescription { get; set; }
         public decimal? Price { get; set; }
 
-        [ForeignKey("Client")]
         public Guid ClientId { get; set; }
         [ForeignKey("Musician")]
         public Guid? MusicianId { get; set; }

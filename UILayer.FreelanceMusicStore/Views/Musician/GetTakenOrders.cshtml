@@ -23,7 +23,7 @@
                 <td>
                     @using (Html.BeginForm("UploadFile", "Musician", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                        @Html.TextBox("PostedFile", order.PostedFile, new { type = "file", @class = "input-xlarge" })
+                        @Html.TextBox("PostedFile", null, new { type = "file", @class = "input-xlarge" })                       
                         @Html.Hidden("Id", order.Id);
                         @Html.Hidden("ClientId", order.ClientId);
                         @Html.Hidden("MusicInstrumentId", order.MusicInstrument.Id);

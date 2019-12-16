@@ -32,7 +32,6 @@ namespace Files.FreelanceMusicStore.Controllers {
             string[] files = Directory.GetFiles(folderPath);
             var finalString = new List<string>();
             foreach (var file in files) {
-                string sss = AppDomain.CurrentDomain.BaseDirectory;
                 string f = file.Replace(AppDomain.CurrentDomain.BaseDirectory, "http:\\files.localhost.net\\");
                 finalString.Add(f);
             }
@@ -44,7 +43,7 @@ namespace Files.FreelanceMusicStore.Controllers {
 
         // POST api/values
         public async void PostFile(FileDTO.FileDTO fileDTO) {
-            string folderPath = System.Web.HttpContext.Current.Server.MapPath("~/Files" + $"/{fileDTO.OrderId}");
+            string folderPath = System.Web.HttpContext.Current.Server.MapPath("~\\Files" + $"\\{fileDTO.OrderId}");
             Directory.CreateDirectory(folderPath);
             using (FileStream fileStream = new FileStream(Path.Combine(folderPath, fileDTO.FileName), FileMode.Create)) {
                 await fileStream.WriteAsync(fileDTO.Data, 0, fileDTO.Data.Length);

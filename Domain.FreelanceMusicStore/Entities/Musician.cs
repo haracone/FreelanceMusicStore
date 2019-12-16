@@ -11,7 +11,7 @@ namespace Domain.FreelanceMusicStore.Entities {
         [ForeignKey("ApplicationUser")]
         public Guid Guid { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
-        public virtual ICollection<MusicInstrument> MusicInstrument { get; set; }
+        public virtual ICollection<MusicInstrument> MusicInstruments { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
     }
 }

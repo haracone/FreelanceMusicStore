@@ -119,7 +119,6 @@
     <Compile Include="EntityDTO\MusicianDTO.cs" />
     <Compile Include="EntityDTO\MusicInstrumentDTO.cs" />
     <Compile Include="EntityDTO\OrderDTO.cs" />
-    <Compile Include="EntityDTO\FileDTO.cs" />
     <Compile Include="EntityDTO\ServerRequest.cs" />
     <Compile Include="Interfaces\IApplicationUserService.cs" />
     <Compile Include="Interfaces\IClientService.cs" />

@@ -2,6 +2,7 @@
 using BLL.FreelanceMusicStore.EntityDTO;
 using BLL.FreelanceMusicStore.Interfaces;
 using Microsoft.AspNet.Identity;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ using TestProject.Models;
 namespace TestProject.Controllers {
     [ExceptionFilter]
     public class CommentAjaxController : Controller {
+        private static Logger s_logger;
         private IMapper _mapper;
         private ICommentService _commentService;
         private IApplicationUserService _applicationUserService;
@@ -22,6 +24,7 @@ namespace TestProject.Controllers {
             _mapper = mapper;
             _commentService = commentService;
             _applicationUserService = applicationUserService;
+            s_logger = LogManager.GetCurrentClassLogger();
         }
 
         public ActionResult Chat(Guid id) {
@@ -36,6 +39,8 @@ namespace TestProject.Controllers {
 
         [HttpPost]
         public async Task<JsonResult> Chat(CommentViewModel commentViewModel) {
+            var currentUser = _applicationUserService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
+            s_logger.Info("User " + currentUser.Id + " get url " + HttpContext.Request.Url.AbsoluteUri);
             ServerRequest serverRequest = new ServerRequest();
             try {
                 commentViewModel.Id = Guid.NewGuid();
@@ -47,12 +52,15 @@ namespace TestProject.Controllers {
                 return Json(serverRequest.Message, JsonRequestBehavior.DenyGet);
             }
             catch {
+                s_logger.Error("Error when user " + currentUser.Id + " try to send message");
                 serverRequest.Message = "error";
                 return Json(serverRequest.Message, JsonRequestBehavior.DenyGet);
             }
         }
 
         public async Task<JsonResult> DeleteMessage(CommentViewModel commentViewModel) {
+            var currentUser = _applicationUserService.GetUserById(Guid.Parse(User.Identity.GetUserId()));
+            s_logger.Info("User " + currentUser.Id + " get url " + HttpContext.Request.Url.AbsoluteUri);
             CommentDTO commentDTO = _commentService.GetById(commentViewModel.Id);
             commentViewModel.CommentTime = commentDTO.CommentTime;
             ServerRequest serverRequest = new ServerRequest();
@@ -69,6 +77,7 @@ namespace TestProject.Controllers {
                 }
             }
             catch {
+                s_logger.Error("Error when user " + currentUser.Id + " try to delete message");
                 serverRequest.ErrorOccured = true;
                 serverRequest.Message = "error";
                 return Json(serverRequest.Message, JsonRequestBehavior.DenyGet);
